@@ -6,13 +6,49 @@ import { hall } from '../types/hall';
 dotenv.config();
 
 export class Hall {
+
   async index(): Promise<hall[]> {
     try {
       // @ts-ignore
+      console.log("00000000000000-->")
+      // @ts-ignore
       const conn = await pool.connect();
-      const sql = 'SELECT * FROM hall';
+      console.log(conn)
+      const sql = "SELECT * FROM hall where checked='true'";
 
       const result = await conn.query(sql);
+
+      conn.release();
+      return result.rows;
+    } catch (err) {
+      throw new Error(`Error: ${err}`);
+    }
+  }
+
+  async adminindex(): Promise<hall[]> {
+    try {
+
+      // @ts-ignore
+      const conn = await pool.connect();
+   
+      const sql = "SELECT * FROM hall where checked='false'";
+
+      const result = await conn.query(sql);
+
+      conn.release();
+      return result.rows;
+    } catch (err) {
+      throw new Error(`Error: ${err}`);
+    }
+  }
+
+  async userindex(id: string): Promise<hall[]> {
+    try {
+      // @ts-ignore
+      const conn = await pool.connect();
+      const sql = 'SELECT * FROM hall where user_id=($1)';
+
+      const result = await conn.query(sql, [id]);
 
       conn.release();
       return result.rows;
@@ -29,11 +65,24 @@ export class Hall {
 
       const result = await conn.query(sql, [id]);
       conn.release();
-      if(result.rowCount){
+      if (result.rowCount) {
         return true;
       }
       return false;
+    } catch (err) {
+      throw new Error(`${err}`);
+    }
+  }
 
+  async update(checked: string, id: string): Promise<boolean> {
+    try {
+      const sql = 'UPDATE hall SET checked =$1 WHERE id =$2';
+      // @ts-ignore
+      const conn = await pool.connect();
+
+      const result = await conn.query(sql, [checked, id]);
+      conn.release();
+      return result.rowCount === 1;
     } catch (err) {
       throw new Error(`${err}`);
     }
@@ -42,7 +91,7 @@ export class Hall {
   async create(h: hall): Promise<hall> {
     try {
       const sql =
-        'INSERT INTO hall(name, capacity, city, location, details, images, cover_image, pdf, video, user_id) VALUES ($1, $2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *';
+        'INSERT INTO hall(name, capacity, city, location, details, images, cover_image,pdf,video,price_hour,user_id) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING *';
       // @ts-ignore
       const conn = await pool.connect();
       const result = await conn.query(sql, [
@@ -55,6 +104,7 @@ export class Hall {
         h.cover_image,
         h.pdf,
         h.video,
+        h.price_hour,
         h.user_id
       ]);
       const hall = result.rows[0];
@@ -62,6 +112,7 @@ export class Hall {
 
       return hall;
     } catch (err) {
+      console.log(err);
       throw new Error(`Error ${err}`);
     }
   }

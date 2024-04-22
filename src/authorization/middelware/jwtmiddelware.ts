@@ -13,9 +13,11 @@ const verify: RequestHandler = async (
   next: express.NextFunction
 ) => {
   try {
-    const authorizationHeader = req.headers.Authorization as string;
+    
+    const authorizationHeader = req.headers.authorization as string;
     const token = authorizationHeader.split(' ')[1];
-    const decoded = jwt.verify(token, TOKEN_SECRET);
+    const decoded = jwt.verify(token, TOKEN_SECRET)
+  
     next();
   } catch {
     res.status(401);

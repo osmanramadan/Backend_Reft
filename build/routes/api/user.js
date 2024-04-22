@@ -1,0 +1,22 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const user_1 = __importDefault(require("../../controller/user"));
+const jwtmiddelware_1 = __importDefault(require("../../authorization/middelware/jwtmiddelware"));
+const authValidator_1 = require("../../utils/validator/authValidator");
+const usercontroller = new user_1.default();
+const users = express_1.default.Router();
+users.get('/', jwtmiddelware_1.default, usercontroller.index);
+users.post('/signup', usercontroller.create);
+users.post('/login', usercontroller.getuserbycredentials);
+users.post('/forgotPassword', authValidator_1.forgetPasswordValidator, usercontroller.forgetpassword);
+users.post('/verifyResetCode', authValidator_1.verifyPasswordValidator, usercontroller.verifyresetcode);
+users.post('/resetPassword', authValidator_1.resetPasswordValidator, usercontroller.resetpassword);
+users.put('/updateuserprofile', usercontroller.updateuserprofile);
+users.put('/updateuserpassword', usercontroller.updateuserpassword);
+// users.get('/:id', verify, usercontroller.show);
+// users.delete('/delete/:id', verify, usercontroller.delete);
+exports.default = users;

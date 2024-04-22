@@ -10,6 +10,7 @@ export type user = {
   id?: number;
   email?: string;
   username?: string;
+  name?: string;
   password?: string;
   passwordConfirm?: string;
   phone?: string;

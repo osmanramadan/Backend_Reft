@@ -16,18 +16,18 @@ export const signupValidator = [
       return true;
     }),
 
-  // check('email')
-  // .notEmpty()
-  // .withMessage('Email required field')
-  // .isEmail()
-  // .withMessage('من فضلك ادخل ايميل صحيح')
-  // .custom(async (_val, { req })=>{
-  //     const existemail = await userobject.emailExists(req.body.email);
-  //     if (existemail) {
-  //         throw  new Error(`الايميل موجود بالفعل`);
-  //     }
-  //     return true;
-  // }),
+  check('email')
+    .notEmpty()
+    .withMessage('Email required field')
+    .isEmail()
+    .withMessage('من فضلك ادخل ايميل صحيح')
+    .custom(async (_val, { req }) => {
+      const existemail = await userobject.emailExists(req.body.email);
+      if (existemail) {
+        throw new Error(`الايميل موجود بالفعل`);
+      }
+      return true;
+    }),
 
   check('password')
     .notEmpty()
@@ -46,50 +46,62 @@ export const signupValidator = [
     }),
 
   check('phone')
-  .optional()
-  .isMobilePhone('ar-EG')
-  .withMessage('accept only Egypt phone numbers')
-  .custom(async (_val, { req }) => {
+    .optional()
+    .isMobilePhone('ar-EG')
+    .withMessage('accept only Egypt phone numbers')
+    .custom(async (_val, { req }) => {
       const existphone = await userobject.phoneExists(req.body.phone);
       if (existphone) {
-      throw new Error("الرقم موجود بالفعل");
+        throw new Error('الرقم موجود بالفعل');
       }
       return true;
-  }),
+    }),
+
+  check('city')
+    .notEmpty()
+    .withMessage('city required')
+    .custom(async (_val, { req }) => {
+      return true;
+    }),
+
+  check('role')
+    .notEmpty()
+    .withMessage('role required')
+    .custom(async (_val, { req }) => {
+      return true;
+    }),
 
   validatorMiddleware
 ];
 
 export const loginValidator = [
-  check('email')
-    .notEmpty()
-    .withMessage('Email required field')
-    .isEmail()
-    .withMessage('Invalid email format'),
+  check('email').isEmpty().withMessage('Email required field'),
+  // .isEmail()
+  // .withMessage('Invalid email format'),
 
-  check('password')
-    .notEmpty()
-    .withMessage('Password required')
-    .isLength({ min: 8 })
-    .withMessage('password must be at least 8 chars'),
+  check('password').isEmpty().withMessage('Password required'),
+  // .isLength({ min: 8 })
+  // .withMessage('password must be at least 8 chars'),
   validatorMiddleware
 ];
+
 export const forgetPasswordValidator = [
   check('email')
     .notEmpty()
     .withMessage('Email required field')
     .isEmail()
-    .withMessage('من فضلك ادخل ايميل صحيح')
+    .withMessage('Invalid email')
     .custom(async (_val, { req }) => {
       const existemail = await userobject.emailExists(req.body.email);
       if (!existemail) {
-        throw new Error(`الايميل غير موجود لدينا`);
+        throw new Error('Email doesnt exist');
       }
       return true;
     }),
 
   validatorMiddleware
 ];
+
 export const verifyPasswordValidator = [
   check('email')
     .notEmpty()

@@ -1,0 +1,22 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const hall_1 = __importDefault(require("../../controller/hall"));
+// import verify from '../../authorization/middelware/jwtmiddelware';
+const hallValidator_1 = require("../../utils/validator/hallValidator");
+const imageupload_1 = __importDefault(require("../../authorization/middelware/imageupload"));
+const hallcontroller = new hall_1.default();
+const UploadImageController = new imageupload_1.default();
+const hall = express_1.default.Router();
+hall.get('/', hallcontroller.index);
+hall.get('/getadminhalls', hallcontroller.adminindex);
+hall.get('/:id', hallcontroller.userindex);
+hall.get('/video/:filename', hallcontroller.getvideo);
+hall.get('/pdf/:filename', hallcontroller.getpdf);
+hall.post('/addhall', UploadImageController.uploadMultimages, UploadImageController.resizeimage, hallValidator_1.addhallValidator, hallcontroller.create);
+hall.post('/delete/:id', hallcontroller.delete);
+hall.put('/', hallcontroller.update);
+exports.default = hall;

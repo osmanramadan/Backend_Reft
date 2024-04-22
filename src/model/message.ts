@@ -6,7 +6,6 @@ import { message } from '../types/message';
 dotenv.config();
 
 export class Message {
-
   async index(): Promise<message[]> {
     try {
       // @ts-ignore
@@ -30,32 +29,34 @@ export class Message {
 
       const result = await conn.query(sql, [id]);
       conn.release();
-      if(result.rowCount){
+      if (result.rowCount) {
         return true;
       }
       return false;
-
     } catch (err) {
       throw new Error(`${err}`);
     }
   }
 
-  async create(M:message): Promise<message> {
+  async create(M: message): Promise<message> {
     try {
       const sql =
         'INSERT INTO user_message(name, phone, email, message, user_id)VALUES ($1,$2,$3,$4,$5) RETURNING *';
       // @ts-ignore
-      const conn    = await pool.connect();
-      const result  = await conn.query(sql, [M.name,M.phone,M.email,M.message,M.user_id]);
+      const conn = await pool.connect();
+      const result = await conn.query(sql, [
+        M.name,
+        M.phone,
+        M.email,
+        M.message,
+        M.user_id
+      ]);
       const message = result.rows[0];
       conn.release();
       return message;
-
     } catch (err) {
-        console.log(err)
+      console.log(err);
       throw new Error(`Error ${err}`);
     }
   }
-
-  
 }

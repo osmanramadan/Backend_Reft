@@ -14,8 +14,8 @@ const usercontroller = new Usercontroller();
 const users: express.Router = express.Router();
 
 users.get('/', verify, usercontroller.index);
-users.post('/signup', signupValidator, usercontroller.create);
-users.post('/login', loginValidator, usercontroller.getuserbycredentials);
+users.post('/signup', usercontroller.create);
+users.post('/login',usercontroller.getuserbycredentials);
 users.post(
   '/forgotPassword',
   forgetPasswordValidator,

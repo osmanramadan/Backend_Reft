@@ -23,7 +23,7 @@ export class User {
     }
   }
 
-  async show(id: string): Promise<user> {
+  async show(id: number): Promise<user> {
     try {
       const sql = 'SELECT * FROM users WHERE id=($1)';
       // @ts-ignore
@@ -55,8 +55,10 @@ export class User {
     password: string
   ): Promise<user | null> {
     try {
+      
       const sql = 'SELECT * FROM users WHERE email=($1)';
-      // @ts-ignore
+      console.log("inside")
+       // @ts-ignore
       const conn = await pool.connect();
       const result = await conn.query(sql, [email]);
       conn.release();
@@ -74,9 +76,11 @@ export class User {
 
   async getuserbyemail(email: string): Promise<any> {
     try {
+     
       const sql = 'SELECT * FROM users WHERE email = $1';
       // @ts-ignore
       const conn = await pool.connect();
+      console.log(conn)
       const result = await conn.query(sql, [email]);
       conn.release();
 
@@ -106,6 +110,7 @@ export class User {
       ]);
       const user = result.rows[0];
       conn.release();
+      console.log(result)
 
       return user;
     } catch (err) {
@@ -115,9 +120,11 @@ export class User {
 
   async emailExists(email: string): Promise<boolean> {
     try {
+      
       const sql = 'SELECT EXISTS(SELECT 1 FROM users WHERE email = $1)';
       // @ts-ignore
       const conn = await pool.connect();
+      console.log(conn)
 
       const result = await conn.query(sql, [email]);
       conn.release();
