@@ -51,6 +51,7 @@ export default class MessageController {
       };
 
       const newmessage = await messageobject.create(message);
+
       if (newmessage) {
         res.json({ status: 'success', data: newmessage });
         return;

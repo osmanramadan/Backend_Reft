@@ -110,10 +110,10 @@ export class User {
       ]);
       const user = result.rows[0];
       conn.release();
-      console.log(result)
-
       return user;
+      
     } catch (err) {
+      console.log(err)
       throw new Error(`Could not add new User`);
     }
   }

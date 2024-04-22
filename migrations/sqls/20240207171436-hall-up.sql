@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS hall (
     USER_ID      INT NOT NULL,
     CHECKED      CHECK_STATUS DEFAULT 'false', -- Use the ENUM type for CHECKED column
 
-    CONSTRAINT FK_hall_user
+    CONSTRAINT FK_hall__user
     FOREIGN KEY (USER_ID)
     REFERENCES users(ID)
     ON DELETE CASCADE

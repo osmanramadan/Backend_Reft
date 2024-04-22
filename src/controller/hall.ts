@@ -13,9 +13,9 @@ export default class HallController {
 
   index = async (_req: Request, res: Response) => {
     try {
-      console.log("-------------------------- hall -------------------------------")
+     
       const halls = await hallobject.index();
-      console.log("--------------------------خسةىش-------------------------------")
+     
       const data = [];
 
       if (halls) {
@@ -256,7 +256,7 @@ export default class HallController {
         res.writeHead(206, head);
         file.pipe(res);
       } else {
-        console.log('Serving Full File');
+       
 
         const head = {
           'Content-Length': fileSize,
@@ -288,9 +288,9 @@ export default class HallController {
         video: req.body.video,
         user_id: req.body.user_id
       };
-
+        console.log(hall)
       const newhall = await hallobject.create(hall);
-
+    
       if (newhall) {
         res.json({ status: 'success', data: newhall });
         return;
@@ -298,6 +298,7 @@ export default class HallController {
 
       res.json({ status: 'fail' });
       return;
+
     } catch (err) {
       res.status(403);
       res.json({ status: 'fail' });
@@ -327,7 +328,7 @@ export default class HallController {
 
       const updated = await hallobject.update(req.body.checked, req.body.id);
       if (updated) {
-        console.log(updated, '!!!!!!!!!!!!!!!!!!!!!############');
+        
         res.json({ status: 'success' });
         return;
       }

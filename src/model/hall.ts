@@ -9,11 +9,9 @@ export class Hall {
 
   async index(): Promise<hall[]> {
     try {
-      // @ts-ignore
-      console.log("00000000000000-->")
+
       // @ts-ignore
       const conn = await pool.connect();
-      console.log(conn)
       const sql = "SELECT * FROM hall where checked='true'";
 
       const result = await conn.query(sql);
