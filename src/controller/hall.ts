@@ -341,6 +341,25 @@ export default class HallController {
     }
   };
 
+  hallcities = async (req: Request, res: Response) => {
+    try {
+
+
+      const cities = await hallobject.hallcities();
+      if (cities) {
+        
+        res.json({ status: 'success',cities:cities });
+        return;
+      }
+      res.json({ status: 'fail' });
+      return;
+    } catch (err) {
+      res.status(400);
+      res.json({ status: 'fail' });
+      return;
+    }
+  };
+
   delete = async (req: Request, res: Response) => {
     try {
       const deleted = await hallobject.delete(req.params.id);

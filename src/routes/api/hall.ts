@@ -11,6 +11,7 @@ const UploadImageController = new uploadImageController();
 const hall: express.Router = express.Router();
 
 hall.get('/',hallcontroller.index);
+hall.get('/cities',hallcontroller.hallcities);
 hall.get('/getadminhalls', hallcontroller.adminindex);
 hall.get('/:id', hallcontroller.userindex);
 hall.get('/video/:filename', hallcontroller.getvideo);

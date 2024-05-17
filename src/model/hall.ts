@@ -23,6 +23,22 @@ export class Hall {
     }
   }
 
+  async hallcities(): Promise<hall[]> {
+    try {
+
+      // @ts-ignore
+      const conn = await pool.connect();
+      const sql = "SELECT city FROM hall";
+
+      const result = await conn.query(sql);
+
+      conn.release();
+      return result.rows;
+    } catch (err) {
+      throw new Error(`Error: ${err}`);
+    }
+  }
+
   async adminindex(): Promise<hall[]> {
     try {
 

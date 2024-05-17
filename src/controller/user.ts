@@ -56,6 +56,10 @@ export default class UserController {
           
           const token = await generatetoken(userbyemail);
           delete userbyemail.password;
+          delete userbyemail.password_changed_at;
+          delete userbyemail.password_reset_expires;
+          delete userbyemail.reset_code_verified;
+          delete userbyemail.password_verified_code
           
           res.json({ data: userbyemail, token: token });
           return;
@@ -115,8 +119,6 @@ export default class UserController {
 
       };
 
-      console.log(userquery,'>>>*********************************************************************<<<<----')
-
       const existemail = await userobject.emailExists(req.body.email);
     
       if (existemail) {
@@ -129,10 +131,16 @@ export default class UserController {
         res.json({ error: 'Phone already exist' });
         return;
       }
-      console.log(existphone)
+      
     
       const newuser = await userobject.create(userquery);
-
+      delete newuser.password;
+      delete newuser.password_changed_at;
+      delete newuser.password_reset_expires;
+      delete newuser.password_verified_code;
+      delete newuser.reset_code_verified;
+      
+      
       const token = await generatetoken(newuser);
       res.json({ token: token });
       return;
