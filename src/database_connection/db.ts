@@ -36,25 +36,3 @@ if (NODE_ENV === 'dev') {
 
 export default pool;
 
-
-
-// import { Pool } from 'pg';
-
-// function createPool() {
-//   const { DATABASE_URL } = process.env;
-
-//   if (!DATABASE_URL) {
-//     throw new Error('DATABASE_URL environment variable is not defined');
-//   }
-
-//   return new Pool({
-//     connectionString: DATABASE_URL,
-//     ssl: {
-//       rejectUnauthorized: false // For development/testing purposes
-//     }
-//   });
-// }
-
-// const pool = createPool();
-
-// export default pool;

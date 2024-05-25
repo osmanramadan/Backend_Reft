@@ -61,8 +61,8 @@ export default class HallController {
             return;
           }
         }
-
-        res.json({ status: 'success', data: data });
+        // res.redirect('/success')
+        res.json({ status: 'success', data:data});
         return;
       }
     } catch (err) {
