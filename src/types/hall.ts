@@ -13,3 +13,13 @@ export type hall = {
   video?: string;
   user_id?: number;
 };
+
+export type hallrate = {
+  length?:boolean;
+  id?: number;
+  userid?:number;
+  hallid?:number;
+  rate?:number
+
+};
+

@@ -10,4 +10,20 @@ export type bookinfo = {
     hour?:string;
     code?:string;
   };
+
+  export type dashboardbookinfo = {
+    id?: number;
+    userid?: number;
+    halluserid?:number;
+    hallid?:number;
+    datefrom?:Date;
+    dateto?:Date;
+    hourfrom?:string;
+    hourto?:string;
+    date?:Date;
+    hour?:string;
+    type?:string;
+    amount?:string
+
+  };
   

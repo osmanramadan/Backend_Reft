@@ -24,6 +24,8 @@ hall.post(
   hallcontroller.create
 );
 hall.post('/delete/:id', hallcontroller.delete);
+hall.post('/addrate', hallcontroller.addHallRate);
+hall.post('/allowrate', hallcontroller.checkHallUserRate);
 hall.put('/', hallcontroller.update);
 
 export default hall;

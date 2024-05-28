@@ -1,7 +1,7 @@
 // @ts-ignore
 import pool from '../database_connection/db';
 import dotenv from 'dotenv';
-import { hall } from '../types/hall';
+import { hall, hallrate } from '../types/hall';
 
 dotenv.config();
 
@@ -154,4 +154,61 @@ export class Hall {
       throw new Error(`Error: ${err}`);
     }
   }
+
+  async addRate(info:hallrate): Promise<hallrate> {
+    try {
+      const sql =
+        'INSERT INTO hallrate (hallid,userid,rate) VALUES ($1,$2,$3) RETURNING *';
+      // @ts-ignore
+      const conn = await pool.connect();
+      const result = await conn.query(sql, [
+         info.hallid,
+         info.userid,
+         info.rate
+      ]);
+      const data = result.rows[0];
+      conn.release();
+      return data;
+    } catch (err) {
+      throw new Error(`${err}`);
+    }
+  }
+
+
+  async CheckForUserExistRate(info:hallrate): Promise<hallrate> {
+    try {
+      const sql = 'select * FROM hallrate where hallid=($1) and userid=($2)';
+      // @ts-ignore
+      const conn = await pool.connect();
+      const result = await conn.query(sql, [
+        info.hallid,info.userid
+      
+      ]);
+      const data = result.rows[0];
+      conn.release();
+   
+      return data;
+    } catch (err) {
+      throw new Error(`${err}`);
+    }
+  }
+
+  async getHallRate(id:number): Promise<hallrate> {
+    try {
+      const sql = 'select sum(rate) as sumstar,count(rate) as numstar FROM hallrate where hallid=($1)';
+      // @ts-ignore
+      const conn = await pool.connect();
+      const result = await conn.query(sql, [id]);
+      const data = result.rows[0];
+      conn.release();
+   
+      return data;
+    } catch (err) {
+      throw new Error(`${err}`);
+    }
+  }
+
+
+
+
 }

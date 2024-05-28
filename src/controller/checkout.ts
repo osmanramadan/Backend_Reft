@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { createOrder, capturePayment } from '../payment/paypal';
 import { Checkout } from '../model/checkout';
-import { bookinfo } from '../types/bookinfo';
+import { bookinfo, dashboardbookinfo } from '../types/bookinfo';
 
 
 
@@ -26,11 +26,24 @@ createOrder= async (req: Request, res: Response) => {
 
 captureorder = async (req: Request, res: Response) => {
     try {
-      // console.log(req.body.data:bookinfo)
+     
       await capturePayment(req.query.token)
 
      console.log(req.body.data.type)
+
       if(req.body.data.type=='onehour'){
+
+        const dashboardbookdata:dashboardbookinfo={
+          userid: req.body.data.dashboardinfo.userid,
+          halluserid: req.body.data.dashboardinfo.halluserid,
+          hallid: req.body.data.dashboardinfo.hallid,
+          date:req.body.data.dashboardinfo.date,
+          hour:req.body.data.dashboardinfo.hour,
+          type:req.body.data.dashboardinfo.type,
+          amount:req.body.data.dashboardinfo.amount
+        }
+     
+         await checkout.createonehour(dashboardbookdata)
 
        const bookinfo:bookinfo ={
         userid:req.body.data.userid,
@@ -42,15 +55,28 @@ captureorder = async (req: Request, res: Response) => {
         month:req.body.data.month,
         code: `${req.body.data.hallid}${req.body.data.year}${req.body.data.month}${req.body.data.day}${req.body.data.hour}`
      }
-
+      
       const check = await checkout.create(bookinfo)
+
       if(check){
-        res.json({'status':'success'})
-        return;
+
+          res.json({'status':'success'})
+          return;
       }
-      }else if(req.body.data.type=='hourdays'||req.body.data.type=='dayshours'||req.body.data.type=='dayhours'){
+      }else if(req.body.data.type=='hourdays'){
         
          try{
+            const dashboardbookdata:dashboardbookinfo={
+              userid: req.body.data.dashboardinfo.userid,
+              halluserid: req.body.data.dashboardinfo.halluserid,
+              hallid: req.body.data.dashboardinfo.hallid,
+              datefrom:req.body.data.dashboardinfo.datefrom,
+              dateto:req.body.data.dashboardinfo.dateto,
+              hour:req.body.data.dashboardinfo.hour,
+              type:req.body.data.dashboardinfo.type,
+              amount:req.body.data.dashboardinfo.amount
+            }
+             await checkout.createintervaldays(dashboardbookdata)
 
             req.body.data.bookinfo.map((e:bookinfo)=>{
 
@@ -70,19 +96,93 @@ captureorder = async (req: Request, res: Response) => {
           res.json({'status':'success'})
           return;
          }catch(e){
-                 
             res.json({'status':'fail'})
             return;
          }
+      
+      }else if(req.body.data.type=='dayshours'){
         
-      }else{
+        try{
+          const dashboardbookdata:dashboardbookinfo={
+            userid: req.body.data.dashboardinfo.userid,
+            halluserid: req.body.data.dashboardinfo.halluserid,
+            hallid: req.body.data.dashboardinfo.hallid,
+            datefrom:req.body.data.dashboardinfo.datefrom,
+            dateto:req.body.data.dashboardinfo.dateto,
+            hourfrom:req.body.data.dashboardinfo.hourfrom,
+            hourto:req.body.data.dashboardinfo.hourto,
+            type:req.body.data.dashboardinfo.type,
+            amount:req.body.data.dashboardinfo.amount
+          }
+          checkout.createintervalhoursdays(dashboardbookdata)
+  
+           req.body.data.bookinfo.map((e:bookinfo)=>{
+
+           const bookinfo:bookinfo ={
+             userid:e.userid,
+             hallid:e.hallid,
+             date:e.date,
+             day:e.day,
+             hour:e.hour,
+             year:e.year,
+             month:e.month,
+             code:e.code
+          }
+            checkout.create(bookinfo)
+ 
+         })
+         res.json({'status':'success'})
+         return;
+        }catch(e){
+           res.json({'status':'fail'})
+           return;
+        }
+     
+     }else if(req.body.data.type=='dayhours'){
+        
+      try{
+
+        const dashboardbookdata:dashboardbookinfo={
+          userid: req.body.data.dashboardinfo.userid,
+          halluserid: req.body.data.dashboardinfo.halluserid,
+          hallid: req.body.data.dashboardinfo.hallid,
+          date:req.body.data.dashboardinfo.date,
+          hourfrom:req.body.data.dashboardinfo.hourfrom,
+          hourto:req.body.data.dashboardinfo.hourto,
+          type:req.body.data.dashboardinfo.type,
+          amount:req.body.data.dashboardinfo.amount
+        }
+        checkout.createintervalhours(dashboardbookdata)
+
+
+         req.body.data.bookinfo.map((e:bookinfo)=>{
+
+         const bookinfo:bookinfo ={
+           userid:e.userid,
+           hallid:e.hallid,
+           date:e.date,
+           day:e.day,
+           hour:e.hour,
+           year:e.year,
+           month:e.month,
+           code:e.code
+        }
+          checkout.create(bookinfo)
+
+       })
+       res.json({'status':'success'})
+       return;
+      }catch(e){
+         res.json({'status':'fail'})
+         return;
+      }
+   
+   } else{
+
         res.json({'status':'fail'})
         return;
+
       }
-
-      
-               
-
 
     } catch (err) {
       res.status(400);
