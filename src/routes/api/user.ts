@@ -31,7 +31,7 @@ users.post(
   resetPasswordValidator,
   usercontroller.resetpassword
 );
-users.put('/updateuserprofile', usercontroller.updateuserprofile);
+users.put('/updateuserprofile',verify,usercontroller.updateuserprofile);
 users.put('/updateuserpassword', usercontroller.updateuserpassword);
 
 // users.get('/:id', verify, usercontroller.show);

@@ -24,6 +24,7 @@ class HallController {
                             const imageData = await fs_1.default.promises.readFile(imagePath);
                             const imgCover = { imageCoverData: imageData.toString('base64') };
                             const imagesData = [];
+                            let rate = [];
                             // @ts-ignore
                             for (const img of value.images) {
                                 const imagePath = path_1.default.join(__dirname, '../uploads/halls', img);
@@ -36,6 +37,7 @@ class HallController {
                             if (user) {
                                 userData = {
                                     userData: {
+                                        id: user.id,
                                         name: user.name,
                                         phone: user.phone,
                                         email: user.email,
@@ -43,13 +45,16 @@ class HallController {
                                     }
                                 };
                             }
-                            data.push(Object.assign(Object.assign(Object.assign(Object.assign({}, value), imgsData), imgCover), userData));
+                            const stars = await hallobject.getHallRate(value.id);
+                            const array_rate = { rate: stars };
+                            data.push(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, value), imgsData), imgCover), userData), array_rate));
                         }
                         catch (err) {
                             res.json({ status: 'fail' });
                             return;
                         }
                     }
+                    // res.redirect('/success')
                     res.json({ status: 'success', data: data });
                     return;
                 }
@@ -92,7 +97,9 @@ class HallController {
                                     }
                                 };
                             }
-                            data.push(Object.assign(Object.assign(Object.assign(Object.assign({}, value), imgsData), imgCover), userData));
+                            const stars = await hallobject.getHallRate(value.id);
+                            const array_rate = { rate: stars };
+                            data.push(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, value), imgsData), imgCover), userData), array_rate));
                         }
                         catch (err) {
                             res.json({ status: 'fail' });
@@ -141,7 +148,9 @@ class HallController {
                                     }
                                 };
                             }
-                            data.push(Object.assign(Object.assign(Object.assign(Object.assign({}, value), imgsData), imgCover), userData));
+                            const stars = await hallobject.getHallRate(value.id);
+                            const array_rate = { rate: stars };
+                            data.push(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, value), imgsData), imgCover), userData), array_rate));
                         }
                         catch (err) {
                             res.json({ status: 'fail' });
@@ -196,7 +205,6 @@ class HallController {
         this.getpdf = (req, res) => {
             const { filename } = req.params;
             const pdfPath = path_1.default.join(__dirname, '../uploads/pdfs', filename);
-            console.log('PDF Path:', pdfPath);
             if (fs_1.default.existsSync(pdfPath)) {
                 console.log('PDF File Exists');
                 const stat = fs_1.default.statSync(pdfPath);
@@ -219,7 +227,6 @@ class HallController {
                     file.pipe(res);
                 }
                 else {
-                    console.log('Serving Full File');
                     const head = {
                         'Content-Length': fileSize,
                         'Content-Type': 'application/pdf'
@@ -257,7 +264,45 @@ class HallController {
                 return;
             }
             catch (err) {
-                res.status(400);
+                res.status(403);
+                res.json({ status: 'fail' });
+                return;
+            }
+        };
+        this.checkHallShowRate = async (req, res) => {
+            try {
+                const check = await hallobject.CheckForShowRate({ hallid: req.body.hallid ? req.body.hallid : 0, userid: req.body.userid });
+                // @ts-ignore
+                if (!check) {
+                    res.json({ status: 'success' });
+                    return;
+                }
+                res.json({ status: 'fail' });
+                return;
+            }
+            catch (err) {
+                res.status(403);
+                res.json({ status: 'fail' });
+                return;
+            }
+        };
+        this.addHallRate = async (req, res) => {
+            try {
+                console.log(req);
+                const check = await hallobject.CheckForUserExistRate({ hallid: req.body.hallid, userid: req.body.userid });
+                // @ts-ignore
+                if (!check) {
+                    const newrate = await hallobject.addRate({ hallid: req.body.hallid, userid: req.body.userid, rate: req.body.rate });
+                    if (newrate) {
+                        res.json({ status: 'success', data: newrate });
+                        return;
+                    }
+                }
+                res.json({ status: 'fail' });
+                return;
+            }
+            catch (err) {
+                res.status(403);
                 res.json({ status: 'fail' });
                 return;
             }
@@ -283,8 +328,23 @@ class HallController {
                 // };
                 const updated = await hallobject.update(req.body.checked, req.body.id);
                 if (updated) {
-                    console.log(updated, '!!!!!!!!!!!!!!!!!!!!!############');
                     res.json({ status: 'success' });
+                    return;
+                }
+                res.json({ status: 'fail' });
+                return;
+            }
+            catch (err) {
+                res.status(400);
+                res.json({ status: 'fail' });
+                return;
+            }
+        };
+        this.hallcities = async (req, res) => {
+            try {
+                const cities = await hallobject.hallcities();
+                if (cities) {
+                    res.json({ status: 'success', cities: cities });
                     return;
                 }
                 res.json({ status: 'fail' });
@@ -299,6 +359,20 @@ class HallController {
         this.delete = async (req, res) => {
             try {
                 const deleted = await hallobject.delete(req.params.id);
+                if (deleted) {
+                    res.json({ status: 'success' });
+                    return;
+                }
+            }
+            catch (err) {
+                res.status(400);
+                res.json({ status: 'fail' });
+                return;
+            }
+        };
+        this.hallbyid = async (req, res) => {
+            try {
+                const deleted = await hallobject;
                 if (deleted) {
                     res.json({ status: 'success' });
                     return;

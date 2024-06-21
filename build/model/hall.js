@@ -33,6 +33,19 @@ class Hall {
             throw new Error(`Error: ${err}`);
         }
     }
+    async hallcities() {
+        try {
+            // @ts-ignore
+            const conn = await db_1.default.connect();
+            const sql = "SELECT city FROM hall";
+            const result = await conn.query(sql);
+            conn.release();
+            return result.rows;
+        }
+        catch (err) {
+            throw new Error(`Error: ${err}`);
+        }
+    }
     async adminindex() {
         try {
             // @ts-ignore
@@ -70,6 +83,19 @@ class Hall {
                 return true;
             }
             return false;
+        }
+        catch (err) {
+            throw new Error(`${err}`);
+        }
+    }
+    async gethallbyid(id) {
+        try {
+            const sql = 'SELECT * FROM hall WHERE id=($1)';
+            // @ts-ignore
+            const conn = await db_1.default.connect();
+            const result = await conn.query(sql, [id]);
+            conn.release();
+            return result.rows[0];
         }
         catch (err) {
             throw new Error(`${err}`);
@@ -135,6 +161,70 @@ class Hall {
         }
         catch (err) {
             throw new Error(`Error: ${err}`);
+        }
+    }
+    async addRate(info) {
+        try {
+            const sql = 'INSERT INTO hallrate (hallid,userid,rate) VALUES ($1,$2,$3) RETURNING *';
+            // @ts-ignore
+            const conn = await db_1.default.connect();
+            const result = await conn.query(sql, [
+                info.hallid,
+                info.userid,
+                info.rate
+            ]);
+            const data = result.rows[0];
+            conn.release();
+            return data;
+        }
+        catch (err) {
+            throw new Error(`${err}`);
+        }
+    }
+    async CheckForUserExistRate(info) {
+        try {
+            const sql = 'select * FROM hallrate where hallid=($1) and userid=($2)';
+            // @ts-ignore
+            const conn = await db_1.default.connect();
+            const result = await conn.query(sql, [
+                info.hallid, info.userid
+            ]);
+            const data = result.rows[0];
+            conn.release();
+            return data;
+        }
+        catch (err) {
+            throw new Error(`${err}`);
+        }
+    }
+    async CheckForShowRate(info) {
+        try {
+            const sql = 'select * FROM hall_book_dashboard where hall_id=($1) and user_id=($2)';
+            // @ts-ignore
+            const conn = await db_1.default.connect();
+            const result = await conn.query(sql, [
+                info.hallid, info.userid
+            ]);
+            const data = result.rows[0];
+            conn.release();
+            return data;
+        }
+        catch (err) {
+            throw new Error(`${err}`);
+        }
+    }
+    async getHallRate(id) {
+        try {
+            const sql = 'select sum(rate) as sumstar,count(rate) as numstar FROM hallrate where hallid=($1)';
+            // @ts-ignore
+            const conn = await db_1.default.connect();
+            const result = await conn.query(sql, [id]);
+            const data = result.rows[0];
+            conn.release();
+            return data;
+        }
+        catch (err) {
+            throw new Error(`${err}`);
         }
     }
 }

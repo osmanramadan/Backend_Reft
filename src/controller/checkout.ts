@@ -15,6 +15,7 @@ createOrder= async (req: Request, res: Response) => {
     try {
 
        const [token,url] = await createOrder(String(req.body.amount))
+       console.log(url,'/fail-payment/fail-payment/fail-payment')
        res.status(200).json({'status':'success','url':url,'token':token})
        return;
     } catch (err) {
@@ -26,7 +27,7 @@ createOrder= async (req: Request, res: Response) => {
 
 captureorder = async (req: Request, res: Response) => {
     try {
-     
+      console.log('osmanomsan/fail-payment/fail-payment/fail-payment')
       await capturePayment(req.query.token)
       
       function generateNumericSecretCode(length: number = 10): string {

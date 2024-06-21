@@ -44,13 +44,16 @@ class UserController {
         };
         this.getuserbycredentials = async (req, res) => {
             try {
-                console.log("ssssmmmmm mmm mmm sss", req.body.email);
                 const existemail = await userobject.emailExists(req.body.email);
                 if (existemail) {
                     const userbyemail = await userobject.getuserbycredentials(req.body.email, req.body.password);
                     if (userbyemail) {
                         const token = await (0, signtoken_1.default)(userbyemail);
                         delete userbyemail.password;
+                        delete userbyemail.password_changed_at;
+                        delete userbyemail.password_reset_expires;
+                        delete userbyemail.reset_code_verified;
+                        delete userbyemail.password_verified_code;
                         res.json({ data: userbyemail, token: token });
                         return;
                     }
@@ -74,7 +77,6 @@ class UserController {
         this.getuserbyemail = async (req, res) => {
             try {
                 const existemail = await userobject.emailExists(req.body.email);
-                console.log(existemail);
                 if (existemail) {
                     const userbyemail = await userobject.getuserbyemail(req.body.email);
                     if (userbyemail) {
@@ -102,13 +104,12 @@ class UserController {
             try {
                 const userquery = {
                     email: req.body.email,
-                    username: req.body.slug,
+                    username: req.body.username,
                     password: req.body.password,
                     phone: req.body.phone,
                     city: req.body.city,
                     role: req.body.role
                 };
-                console.log(userquery);
                 const existemail = await userobject.emailExists(req.body.email);
                 if (existemail) {
                     res.json({ error: 'Email already exist' });
@@ -120,6 +121,11 @@ class UserController {
                     return;
                 }
                 const newuser = await userobject.create(userquery);
+                delete newuser.password;
+                delete newuser.password_changed_at;
+                delete newuser.password_reset_expires;
+                delete newuser.password_verified_code;
+                delete newuser.reset_code_verified;
                 const token = await (0, signtoken_1.default)(newuser);
                 res.json({ token: token });
                 return;

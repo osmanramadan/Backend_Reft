@@ -11,12 +11,15 @@ const verify = async (req, res, next) => {
     try {
         const authorizationHeader = req.headers.authorization;
         const token = authorizationHeader.split(' ')[1];
+        console.log(token);
         const decoded = jsonwebtoken_1.default.verify(token, TOKEN_SECRET);
+        console.log(decoded, 'enas');
         next();
     }
     catch (_a) {
         res.status(401);
-        res.json({ access: 'forbidden' });
+        console.log("osman,==");
+        res.json({ status: 'forbidden' });
     }
 };
 exports.default = verify;

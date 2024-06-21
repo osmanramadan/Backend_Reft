@@ -6,18 +6,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const body_parser_1 = __importDefault(require("body-parser"));
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-const path_1 = __importDefault(require("path"));
 const routes_1 = __importDefault(require("./routes"));
+const dotenv_1 = __importDefault(require("dotenv"));
 const app = (0, express_1.default)();
-const port = 3003;
+const port = process.env.PORT;
+dotenv_1.default.config();
 const corsoptions = {
-    origin: 'http://localhost:3000',
+    origin: process.env.FRONT_LINK,
     optionsSuccessStatus: 200
 };
-const options = {
-    uploadDir: path_1.default.join(__dirname, 'uploads'),
-    autoClean: true
-};
+// const options = {
+//   uploadDir: path.join(__dirname, 'uploads'),
+//   autoClean: true
+// };
 // Use express-form-data middleware with the provided options
 // app.use(formData.parse(options));
 // app.use(formData.format());
@@ -29,6 +30,6 @@ app.use(body_parser_1.default.json());
 app.use(routes_1.default);
 app.listen(port, async () => {
     const url = `http://localhost:${port}`;
-    console.log(`Open ${url} to review the project...`);
+    console.log(`Open ${url} to review the project..`);
 });
 exports.default = app;

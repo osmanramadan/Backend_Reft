@@ -1,6 +1,5 @@
 import express from 'express';
 import HallController from '../../controller/hall';
-// import verify from '../../authorization/middelware/jwtmiddelware';
 import { addhallValidator } from '../../utils/validator/hallValidator';
 import uploadImageController from '../../authorization/middelware/imageupload';
 import verify from '../../authorization/middelware/jwtmiddelware';
@@ -12,7 +11,7 @@ const hall: express.Router = express.Router();
 
 hall.get('/',hallcontroller.index);
 hall.get('/cities',hallcontroller.hallcities);
-hall.get('/getadminhalls', hallcontroller.adminindex);
+hall.get('/getadminhalls',hallcontroller.adminindex);
 hall.get('/:id', hallcontroller.userindex);
 hall.get('/video/:filename', hallcontroller.getvideo);
 hall.get('/pdf/:filename', hallcontroller.getpdf);

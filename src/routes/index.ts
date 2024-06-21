@@ -4,7 +4,7 @@ import hall from './api/hall';
 import message from './api/message';
 import payment from './api/checkout';
 import booking from './api/booking';
-// import verify from '../authorization/middelware/jwtmiddelware';
+
 
 const routes: express.Router = express.Router();
 

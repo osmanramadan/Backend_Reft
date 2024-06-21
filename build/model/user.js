@@ -67,7 +67,6 @@ class User {
             console.log("inside");
             // @ts-ignore
             const conn = await db_1.default.connect();
-            console.log(conn);
             const result = await conn.query(sql, [email]);
             conn.release();
             if (result.rows.length) {
@@ -84,7 +83,6 @@ class User {
     }
     async getuserbyemail(email) {
         try {
-            console.log(email);
             const sql = 'SELECT * FROM users WHERE email = $1';
             // @ts-ignore
             const conn = await db_1.default.connect();
@@ -119,12 +117,12 @@ class User {
             return user;
         }
         catch (err) {
+            console.log(err);
             throw new Error(`Could not add new User`);
         }
     }
     async emailExists(email) {
         try {
-            console.log(email, '000000000000000000*********************');
             const sql = 'SELECT EXISTS(SELECT 1 FROM users WHERE email = $1)';
             // @ts-ignore
             const conn = await db_1.default.connect();
