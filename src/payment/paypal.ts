@@ -65,6 +65,7 @@ export const createOrder = async (price:any): Promise<string[]> => {
           },
         },
       ],
+      // testing
       application_context: {
         return_url: `${process.env.FRONT_LINK}/processing-payment`,
         cancel_url: `${process.env.FRONT_LINK}/fail-payment`,
