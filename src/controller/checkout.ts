@@ -28,8 +28,19 @@ captureorder = async (req: Request, res: Response) => {
     try {
      
       await capturePayment(req.query.token)
-
-     console.log(req.body.data.type)
+      
+      function generateNumericSecretCode(length: number = 10): string {
+        const charset = '0123456789*#$@%!';
+        const values = new Uint32Array(length);
+        crypto.getRandomValues(values);
+    
+        let secretCode = '';
+        for (let i = 0; i < length; i++) {
+            secretCode += charset[values[i] % charset.length];
+        }
+    
+        return secretCode;
+    }
 
       if(req.body.data.type=='onehour'){
 
@@ -40,7 +51,8 @@ captureorder = async (req: Request, res: Response) => {
           date:req.body.data.dashboardinfo.date,
           hour:req.body.data.dashboardinfo.hour,
           type:req.body.data.dashboardinfo.type,
-          amount:req.body.data.dashboardinfo.amount
+          amount:req.body.data.dashboardinfo.amount,
+          secretcode:generateNumericSecretCode()
         }
      
          await checkout.createonehour(dashboardbookdata)
@@ -74,7 +86,8 @@ captureorder = async (req: Request, res: Response) => {
               dateto:req.body.data.dashboardinfo.dateto,
               hour:req.body.data.dashboardinfo.hour,
               type:req.body.data.dashboardinfo.type,
-              amount:req.body.data.dashboardinfo.amount
+              amount:req.body.data.dashboardinfo.amount,
+              secretcode:generateNumericSecretCode()
             }
              await checkout.createintervaldays(dashboardbookdata)
 
@@ -112,7 +125,8 @@ captureorder = async (req: Request, res: Response) => {
             hourfrom:req.body.data.dashboardinfo.hourfrom,
             hourto:req.body.data.dashboardinfo.hourto,
             type:req.body.data.dashboardinfo.type,
-            amount:req.body.data.dashboardinfo.amount
+            amount:req.body.data.dashboardinfo.amount,
+            secretcode:generateNumericSecretCode()
           }
           checkout.createintervalhoursdays(dashboardbookdata)
   
@@ -150,7 +164,8 @@ captureorder = async (req: Request, res: Response) => {
           hourfrom:req.body.data.dashboardinfo.hourfrom,
           hourto:req.body.data.dashboardinfo.hourto,
           type:req.body.data.dashboardinfo.type,
-          amount:req.body.data.dashboardinfo.amount
+          amount:req.body.data.dashboardinfo.amount,
+          secretcode:generateNumericSecretCode()
         }
         checkout.createintervalhours(dashboardbookdata)
 

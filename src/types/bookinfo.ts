@@ -16,6 +16,7 @@ export type bookinfo = {
     userid?: number;
     halluserid?:number;
     hallid?:number;
+    hall_id?:number;
     datefrom?:Date;
     dateto?:Date;
     hourfrom?:string;
@@ -23,7 +24,13 @@ export type bookinfo = {
     date?:Date;
     hour?:string;
     type?:string;
-    amount?:string
+    amount?:string;
+    hallinfo?:any;
+    userbyid?:any;
+    bookinglist?:any;
+    placeownerbyid?:any;
+    secretcode?:any;
+
 
   };
   

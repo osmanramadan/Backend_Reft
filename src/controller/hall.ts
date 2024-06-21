@@ -13,6 +13,7 @@ export default class HallController {
 
   index = async (_req: Request, res: Response) => {
     try {
+ 
      
       const halls = await hallobject.index();
      
@@ -117,8 +118,10 @@ export default class HallController {
                 }
               };
             }
+            const stars = await hallobject.getHallRate(value.id as number);
 
-            data.push({ ...value, ...imgsData, ...imgCover, ...userData });
+            const array_rate = { rate: stars};
+            data.push({ ...value, ...imgsData, ...imgCover, ...userData,...array_rate });
           } catch (err) {
             res.json({ status: 'fail' });
             return;
@@ -176,7 +179,11 @@ export default class HallController {
               };
             }
 
-            data.push({ ...value, ...imgsData, ...imgCover, ...userData });
+            const stars = await hallobject.getHallRate(value.id as number);
+
+            const array_rate = { rate: stars};
+
+            data.push({ ...value, ...imgsData, ...imgCover, ...userData,...array_rate});
           } catch (err) {
             res.json({ status: 'fail' });
             return;
@@ -310,16 +317,17 @@ export default class HallController {
   };
 
 
-  checkHallUserRate = async (req: Request, res: Response) => {
+  checkHallShowRate = async (req: Request, res: Response) => {
     try {
-      console.log("999999",{hallid:req.body.hallid,userid:req.body.userid})
-      const check = await hallobject.CheckForUserExistRate({hallid:req.body.hallid?req.body.hallid:0,userid:req.body.userid})
+      
+      const check = await hallobject.CheckForShowRate({hallid:req.body.hallid?req.body.hallid:0,userid:req.body.userid})
             // @ts-ignore
-            console.log(check,'-------=====================+++++++')
+   
         if(!check){
           res.json({ status: 'success' });
           return;
           }
+        
       res.json({ status: 'fail' });
       return;
 
@@ -332,6 +340,9 @@ export default class HallController {
 
   addHallRate = async (req: Request, res: Response) => {
     try {
+    
+
+      console.log(req)
       const check = await hallobject.CheckForUserExistRate({hallid:req.body.hallid,userid:req.body.userid})
 
       // @ts-ignore
@@ -345,7 +356,7 @@ export default class HallController {
            return;
           }
          }
-      res.json({ status: 'fail' });
+      res.json({ status:'fail'});
       return;
 
     } catch (err) {
@@ -412,6 +423,21 @@ export default class HallController {
   delete = async (req: Request, res: Response) => {
     try {
       const deleted = await hallobject.delete(req.params.id);
+
+      if (deleted) {
+        res.json({ status: 'success' });
+        return;
+      }
+    } catch (err) {
+      res.status(400);
+      res.json({ status: 'fail' });
+      return;
+    }
+  };
+  
+  hallbyid = async (req: Request, res: Response) => {
+    try {
+      const deleted = await hallobject
 
       if (deleted) {
         res.json({ status: 'success' });

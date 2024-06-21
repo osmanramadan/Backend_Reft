@@ -3,7 +3,7 @@ import HallController from '../../controller/hall';
 // import verify from '../../authorization/middelware/jwtmiddelware';
 import { addhallValidator } from '../../utils/validator/hallValidator';
 import uploadImageController from '../../authorization/middelware/imageupload';
-// import verify from '../../authorization/middelware/jwtmiddelware';
+import verify from '../../authorization/middelware/jwtmiddelware';
 
 const hallcontroller = new HallController();
 const UploadImageController = new uploadImageController();
@@ -18,14 +18,15 @@ hall.get('/video/:filename', hallcontroller.getvideo);
 hall.get('/pdf/:filename', hallcontroller.getpdf);
 hall.post(
   '/addhall',
+  verify,
   UploadImageController.uploadMultimages,
   UploadImageController.resizeimage,
   addhallValidator,
   hallcontroller.create
 );
 hall.post('/delete/:id', hallcontroller.delete);
-hall.post('/addrate', hallcontroller.addHallRate);
-hall.post('/allowrate', hallcontroller.checkHallUserRate);
+hall.post('/addrate',verify,hallcontroller.addHallRate);
+hall.post('/showrate', hallcontroller.checkHallShowRate);
 hall.put('/', hallcontroller.update);
 
 export default hall;

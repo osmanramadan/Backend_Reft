@@ -41,7 +41,7 @@ export class Checkout {
   async createonehour(dashboardbookinfo:dashboardbookinfo): Promise<bookinfo> {
     try {
       const sql =
-        'INSERT INTO hall_book_dashboard(user_id,hall_id,halluser_id,date,onehour,type,amount) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *';
+        'INSERT INTO hall_book_dashboard(user_id,hall_id,halluser_id,date,onehour,type,amount,secretcode) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *';
       // @ts-ignore
       const conn = await pool.connect();
       const result = await conn.query(sql, [
@@ -52,6 +52,7 @@ export class Checkout {
           dashboardbookinfo.hour,
           dashboardbookinfo.type,
           dashboardbookinfo.amount,
+          dashboardbookinfo.secretcode
       ]);
       console.log(result,'-------------->>>>>')
       const book = result.rows[0];
@@ -69,7 +70,7 @@ export class Checkout {
   async createintervalhours(dashboardbookinfo:dashboardbookinfo): Promise<bookinfo> {
     try {
       const sql =
-        'INSERT INTO hall_book_dashboard(user_id,hall_id,halluser_id,date,hourfrom,hourto,type,amount) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *';
+        'INSERT INTO hall_book_dashboard(user_id,hall_id,halluser_id,date,hourfrom,hourto,type,amount,secretcode) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *';
       // @ts-ignore
       const conn = await pool.connect();
       const result = await conn.query(sql, [
@@ -80,7 +81,8 @@ export class Checkout {
           dashboardbookinfo.hourfrom,
           dashboardbookinfo.hourto,
           dashboardbookinfo.type,
-          dashboardbookinfo.amount
+          dashboardbookinfo.amount,
+          dashboardbookinfo.secretcode
       ]);
       const book = result.rows[0];
       conn.release();
@@ -96,7 +98,7 @@ export class Checkout {
   async createintervaldays(dashboardbookinfo:dashboardbookinfo): Promise<bookinfo> {
     try {
       const sql =
-        'INSERT INTO hall_book_dashboard(user_id,hall_id,halluser_id,datefrom,dateto,onehour,type,amount) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *';
+        'INSERT INTO hall_book_dashboard(user_id,hall_id,halluser_id,datefrom,dateto,onehour,type,amount,secretcode) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *';
       // @ts-ignore
       const conn = await pool.connect();
       const result = await conn.query(sql, [
@@ -107,7 +109,8 @@ export class Checkout {
           dashboardbookinfo.dateto,
           dashboardbookinfo.hour,
           dashboardbookinfo.type,
-          dashboardbookinfo.amount
+          dashboardbookinfo.amount,
+          dashboardbookinfo.secretcode
       ]);
       const book = result.rows[0];
       conn.release();
@@ -123,7 +126,7 @@ export class Checkout {
   async createintervalhoursdays(dashboardbookinfo:dashboardbookinfo): Promise<bookinfo> {
     try {
       const sql =
-        'INSERT INTO hall_book_dashboard(user_id,hall_id,halluser_id,hourfrom,hourto,datefrom,dateto,type,amount) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *';
+        'INSERT INTO hall_book_dashboard(user_id,hall_id,halluser_id,hourfrom,hourto,datefrom,dateto,type,amount,secretcode) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *';
       // @ts-ignore
       const conn = await pool.connect();
       const result = await conn.query(sql, [
@@ -135,7 +138,8 @@ export class Checkout {
           dashboardbookinfo.datefrom,
           dashboardbookinfo.dateto,
           dashboardbookinfo.type,
-          dashboardbookinfo.amount
+          dashboardbookinfo.amount,
+          dashboardbookinfo.secretcode
       ]);
       const book = result.rows[0];
       conn.release();

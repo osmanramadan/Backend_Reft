@@ -88,6 +88,21 @@ export class Hall {
     }
   }
 
+  async gethallbyid(id:string): Promise<boolean> {
+    try {
+      const sql = 'SELECT * FROM hall WHERE id=($1)';
+      // @ts-ignore
+      const conn = await pool.connect();
+
+      const result = await conn.query(sql, [id]);
+      conn.release();
+      return result.rows[0];
+    
+    } catch (err) {
+      throw new Error(`${err}`);
+    }
+  }
+
   async update(checked: string, id: string): Promise<boolean> {
     try {
       const sql = 'UPDATE hall SET checked =$1 WHERE id =$2';
@@ -186,12 +201,33 @@ export class Hall {
       ]);
       const data = result.rows[0];
       conn.release();
-   
+     
+
       return data;
     } catch (err) {
       throw new Error(`${err}`);
     }
+
   }
+
+  
+  async CheckForShowRate(info:hallrate): Promise<hallrate> {
+    try {
+      const sql = 'select * FROM hall_book_dashboard where hall_id=($1) and user_id=($2)';
+      // @ts-ignore
+      const conn = await pool.connect();
+      const result = await conn.query(sql, [
+        info.hallid,info.userid
+      
+      ]);
+      const data = result.rows[0];
+      conn.release();
+     
+
+      return data;
+    } catch (err) {
+      throw new Error(`${err}`);
+    }}
 
   async getHallRate(id:number): Promise<hallrate> {
     try {

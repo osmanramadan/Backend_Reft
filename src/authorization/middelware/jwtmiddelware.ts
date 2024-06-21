@@ -16,12 +16,14 @@ const verify: RequestHandler = async (
     
     const authorizationHeader = req.headers.authorization as string;
     const token = authorizationHeader.split(' ')[1];
-    const decoded = jwt.verify(token, TOKEN_SECRET)
-  
+     console.log(token)
+    const decoded =jwt.verify(token,TOKEN_SECRET)
+    console.log(decoded,'enas')
     next();
   } catch {
     res.status(401);
-    res.json({ access: 'forbidden' });
+    console.log("osman,==")
+    res.json({status: 'forbidden' });
   }
 };
 export default verify;
