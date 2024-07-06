@@ -12,17 +12,18 @@ const verify: RequestHandler = async (
   res: express.Response,
   next: express.NextFunction
 ) => {
+ 
   try {
-    
+   
     const authorizationHeader = req.headers.authorization as string;
     const token = authorizationHeader.split(' ')[1];
-     console.log(token)
     const decoded =jwt.verify(token,TOKEN_SECRET)
-    console.log(decoded,'enas')
+    console.log('hello')
+    // @ts-ignore
+    req.userid=decoded.userid
     next();
   } catch {
     res.status(401);
-    console.log("osman,==")
     res.json({status: 'forbidden' });
   }
 };

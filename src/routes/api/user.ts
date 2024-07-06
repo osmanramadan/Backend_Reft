@@ -13,7 +13,7 @@ import {
 const usercontroller = new Usercontroller();
 const users: express.Router = express.Router();
 
-users.get('/', verify, usercontroller.index);
+users.get('/',usercontroller.index);
 users.post('/signup', usercontroller.create);
 users.post('/login',usercontroller.getuserbycredentials);
 users.post(
@@ -34,7 +34,7 @@ users.post(
 users.put('/updateuserprofile',verify,usercontroller.updateuserprofile);
 users.put('/updateuserpassword', usercontroller.updateuserpassword);
 
-// users.get('/:id', verify, usercontroller.show);
+users.get('/verifyuser',verify,usercontroller.showuserbytoken);
 // users.delete('/delete/:id', verify, usercontroller.delete);
 
 export default users;

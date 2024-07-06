@@ -30,6 +30,34 @@ export default class UserController {
     }
   };
 
+  showuserbytoken = async (req: Request, res: Response) => {
+   try{
+  
+    // @ts-ignore
+    const userbyid = await userobject.show(req.userid as unknown as number);
+    // @ts-ignore
+    delete userbyid.password
+    delete userbyid.password_changed_at
+    delete userbyid.password_verified_code
+    delete userbyid.reset_code_verified
+    delete userbyid.password_reset_expires
+    
+    console.log('recieve hello')
+    if (userbyid) {
+      res.json({ status: 'success',data:userbyid });
+      return;
+    }
+    res.status(400);
+    res.json({ status: 'fail' });
+    return;
+
+   }catch(err){
+    res.status(400);
+    res.json({ status: 'fail' });
+    return;
+   }
+  };
+
   delete = async (req: Request, res: Response) => {
     try {
       const deleted = await userobject.deleteuser(req.params.id);

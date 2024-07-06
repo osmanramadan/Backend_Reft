@@ -32,6 +32,7 @@ export class Booking{
       conn.release();
       return result.rows;
     } catch (err) {
+      console.log(err,'********************************************')
       throw new Error(`Error: ${err}`);
     }
   }
@@ -48,6 +49,7 @@ async ownerbooking(id:string): Promise<dashboardbookinfo> {
       conn.release();
       return result.rows;
     } catch (err) {
+      console.log(err,'********************************************')
       throw new Error(`Error: ${err}`);
     }
   }

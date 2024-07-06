@@ -319,7 +319,7 @@ export default class HallController {
 
   checkHallShowRate = async (req: Request, res: Response) => {
     try {
-      
+      console.log(req.body.userid,'marim')
       const check = await hallobject.CheckForShowRate({hallid:req.body.hallid?req.body.hallid:0,userid:req.body.userid})
             // @ts-ignore
    
