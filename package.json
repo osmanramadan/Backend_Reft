@@ -9,7 +9,7 @@
         "watch": "tsc-watch --esModuleInterop src/index.ts --outDir ./build --onSuccess \"node ./build/index.js\"",
         "prettier": "prettier --config .prettierrc.json src/**/*.ts --write",
         "lint": "eslint .  --fix --ext .ts",
-        "start": "nodemon src/index.ts",
+        "start": "node index.js",
         "jasmine": "jasmine",
         "resetdb": "db-migrate reset && db-migrate up",
         "test1": "npm run resetdb && npm run build && npm run jasmine",
