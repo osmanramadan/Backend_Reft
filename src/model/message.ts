@@ -7,6 +7,7 @@ dotenv.config();
 
 export class Message {
   async index(): Promise<message[]> {
+
     try {
       // @ts-ignore
       const conn = await pool.connect();
@@ -44,8 +45,7 @@ export class Message {
         'INSERT INTO user_message(name, phone, email, message, user_id)VALUES ($1,$2,$3,$4,$5) RETURNING *';
       // @ts-ignore
       const conn = await pool.connect();
-      // @ts-ignore
-      console.log(pool,'-------------------------->')
+   
       const result = await conn.query(sql, [
         M.name,
         M.phone,
@@ -57,7 +57,7 @@ export class Message {
       conn.release();
       return message;
     } catch (err) {
-      console.log(err);
+
       throw new Error(`Error ${err}`);
     }
   }

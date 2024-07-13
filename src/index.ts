@@ -4,15 +4,13 @@ import cors from 'cors';
 import routes from './routes';
 import dotenv from 'dotenv';
 
-
 const app: express.Application = express();
-const port =process.env.PORT;
+const port = process.env.PORT;
 
 dotenv.config();
 
-
 const corsoptions = {
-  origin:process.env.FRONT_LINK,
+  origin: process.env.FRONT_LINK,
   optionsSuccessStatus: 200
 };
 
@@ -26,9 +24,6 @@ const corsoptions = {
 // app.use(formData.format());
 // app.use(formData.stream());
 // app.use(formData.union());
-
-
-
 
 app.use(cors(corsoptions));
 app.use(bodyParser.urlencoded({ extended: false }));

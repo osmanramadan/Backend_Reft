@@ -15,11 +15,9 @@ export type hall = {
 };
 
 export type hallrate = {
-  length?:boolean;
+  length?: boolean;
   id?: number;
-  userid?:number;
-  hallid?:number;
-  rate?:number
-
+  userid?: number;
+  hallid?: number;
+  rate?: number;
 };
-

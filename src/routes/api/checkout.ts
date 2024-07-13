@@ -5,10 +5,11 @@ import PaymentController from '../../controller/checkout';
 const Paycontroller = new PaymentController();
 const payment: express.Router = express.Router();
 
-payment.post("/createorder" , Paycontroller.createOrder)
-payment.post("/capturepayment" , Paycontroller.captureorder)
-payment.post("/hallcodes" , Paycontroller.gethallcodes)
 
-
+payment.post('/createorderpaypal',    Paycontroller.createOrderPaypal);
+payment.post('/createorderstripe',    Paycontroller.createOrderStripe);
+payment.post('/capturepaymentpaypal', Paycontroller.captureorderpaypal);
+payment.post('/capturepaymentstripe', Paycontroller.captureorderstripe);
+payment.post('/hallcodes',            Paycontroller.gethallcodes);
 
 export default payment;

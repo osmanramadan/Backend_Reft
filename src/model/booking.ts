@@ -5,7 +5,7 @@ import { dashboardbookinfo } from '../types/bookinfo';
 
 dotenv.config();
 
-export class Booking{
+export class Booking {
   async index(): Promise<dashboardbookinfo> {
     try {
       // @ts-ignore
@@ -21,39 +21,33 @@ export class Booking{
     }
   }
 
-  async teacherbooking(id:string): Promise<dashboardbookinfo> {
+  async teacherbooking(id: string): Promise<dashboardbookinfo> {
     try {
       // @ts-ignore
       const conn = await pool.connect();
       const sql = 'SELECT * FROM hall_book_dashboard where user_id=($1)';
 
-      const result = await conn.query(sql,[id]);
+      const result = await conn.query(sql, [id]);
 
       conn.release();
       return result.rows;
     } catch (err) {
-      console.log(err,'********************************************')
       throw new Error(`Error: ${err}`);
     }
   }
 
-  
-async ownerbooking(id:string): Promise<dashboardbookinfo> {
+  async ownerbooking(id: string): Promise<dashboardbookinfo> {
     try {
       // @ts-ignore
       const conn = await pool.connect();
       const sql = 'SELECT * FROM hall_book_dashboard where halluser_id=($1)';
 
-      const result = await conn.query(sql,[id]);
+      const result = await conn.query(sql, [id]);
 
       conn.release();
       return result.rows;
     } catch (err) {
-      console.log(err,'********************************************')
       throw new Error(`Error: ${err}`);
     }
   }
-
 }
-
-

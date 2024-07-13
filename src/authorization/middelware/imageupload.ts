@@ -7,7 +7,6 @@ import { PDFDocument } from 'pdf-lib';
 import fs from 'fs';
 
 export default class uploadImageController {
-
   uploadMultiImage() {
     const multerStorage = memoryStorage();
 
@@ -47,7 +46,7 @@ export default class uploadImageController {
       const pathVideo = path.resolve(__dirname, `../../uploads/videos`);
 
       // @ts-ignore
-      if (req.files && req.files.video && req.files.video[0]){
+      if (req.files && req.files.video && req.files.video[0]) {
         req.body.video = ' videoFilename';
         // @ts-ignore
         const extVideo = req.files.video[0].mimetype.split('/')[1];

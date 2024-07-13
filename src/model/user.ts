@@ -7,6 +7,7 @@ import { user, updateuserData } from '../types/user';
 dotenv.config();
 
 const cipher = new Cipher();
+
 export class User {
   async index(): Promise<user[]> {
     try {
@@ -55,10 +56,9 @@ export class User {
     password: string
   ): Promise<user | null> {
     try {
-      
       const sql = 'SELECT * FROM users WHERE email=($1)';
-      console.log("inside")
-       // @ts-ignore
+
+      // @ts-ignore
       const conn = await pool.connect();
       const result = await conn.query(sql, [email]);
       conn.release();
@@ -76,11 +76,9 @@ export class User {
 
   async getuserbyemail(email: string): Promise<any> {
     try {
-     
       const sql = 'SELECT * FROM users WHERE email = $1';
       // @ts-ignore
       const conn = await pool.connect();
-      console.log(conn)
       const result = await conn.query(sql, [email]);
       conn.release();
 
@@ -111,20 +109,17 @@ export class User {
       const user = result.rows[0];
       conn.release();
       return user;
-      
     } catch (err) {
-      console.log(err)
+      console.log(err);
       throw new Error(`Could not add new User`);
     }
   }
 
   async emailExists(email: string): Promise<boolean> {
     try {
-      
       const sql = 'SELECT EXISTS(SELECT 1 FROM users WHERE email = $1)';
       // @ts-ignore
       const conn = await pool.connect();
-      console.log(conn)
 
       const result = await conn.query(sql, [email]);
       conn.release();
@@ -183,9 +178,10 @@ export class User {
       // @ts-ignore
       const conn = await pool.connect();
       const result = await conn.query(sql_valid, [email, resetCode]);
-      conn.release();
+      
       if (result.rowCount === 1) {
         const result_time = await conn.query(sql_expire, [email, resetCode]);
+        conn.release();
         if (result_time.rowCount === 1) {
           return 'valid code';
         } else {

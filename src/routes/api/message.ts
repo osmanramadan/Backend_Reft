@@ -1,6 +1,5 @@
 import express from 'express';
 import MessageController from '../../controller/message';
-
 // import { messageValidator } from '../../utils/validator/messageValidator';
 
 const messagecontroller = new MessageController();

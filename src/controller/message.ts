@@ -9,12 +9,11 @@ export default class MessageController {
     try {
       const messages = await messageobject.index();
       if (messages) {
-        res.json({data:messages,status:"success"});
+        res.json({ data: messages, status: 'success' });
         return;
       }
       res.json({ status: 'fail' });
       return;
-      
     } catch (err) {
       res.status(400);
       res.json({ status: 'fail' });

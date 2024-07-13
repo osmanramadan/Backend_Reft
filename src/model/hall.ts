@@ -9,7 +9,6 @@ export class Hall {
 
   async index(): Promise<hall[]> {
     try {
-
       // @ts-ignore
       const conn = await pool.connect();
       const sql = "SELECT * FROM hall where checked='true'";
@@ -25,10 +24,9 @@ export class Hall {
 
   async hallcities(): Promise<hall[]> {
     try {
-
       // @ts-ignore
       const conn = await pool.connect();
-      const sql = "SELECT city FROM hall";
+      const sql = 'SELECT city FROM hall';
 
       const result = await conn.query(sql);
 
@@ -41,10 +39,9 @@ export class Hall {
 
   async adminindex(): Promise<hall[]> {
     try {
-
       // @ts-ignore
       const conn = await pool.connect();
-   
+
       const sql = "SELECT * FROM hall where checked='false'";
 
       const result = await conn.query(sql);
@@ -88,7 +85,7 @@ export class Hall {
     }
   }
 
-  async gethallbyid(id:string): Promise<boolean> {
+  async gethallbyid(id: string): Promise<boolean> {
     try {
       const sql = 'SELECT * FROM hall WHERE id=($1)';
       // @ts-ignore
@@ -97,7 +94,6 @@ export class Hall {
       const result = await conn.query(sql, [id]);
       conn.release();
       return result.rows[0];
-    
     } catch (err) {
       throw new Error(`${err}`);
     }
@@ -141,7 +137,6 @@ export class Hall {
 
       return hall;
     } catch (err) {
-      console.log(err);
       throw new Error(`Error ${err}`);
     }
   }
@@ -170,16 +165,16 @@ export class Hall {
     }
   }
 
-  async addRate(info:hallrate): Promise<hallrate> {
+  async addRate(info: hallrate): Promise<hallrate> {
     try {
       const sql =
         'INSERT INTO hallrate (hallid,userid,rate) VALUES ($1,$2,$3) RETURNING *';
       // @ts-ignore
       const conn = await pool.connect();
       const result = await conn.query(sql, [
-         info.hallid,
-         info.userid,
-         info.rate
+        info.hallid,
+        info.userid,
+        info.rate
       ]);
       const data = result.rows[0];
       conn.release();
@@ -189,62 +184,50 @@ export class Hall {
     }
   }
 
-
-  async CheckForUserExistRate(info:hallrate): Promise<hallrate> {
+  async CheckForUserExistRate(info: hallrate): Promise<hallrate> {
     try {
       const sql = 'select * FROM hallrate where hallid=($1) and userid=($2)';
       // @ts-ignore
       const conn = await pool.connect();
-      const result = await conn.query(sql, [
-        info.hallid,info.userid
-      
-      ]);
+      const result = await conn.query(sql, [info.hallid, info.userid]);
       const data = result.rows[0];
       conn.release();
-     
 
       return data;
     } catch (err) {
       throw new Error(`${err}`);
     }
-
   }
 
-  
-  async CheckForShowRate(info:hallrate): Promise<hallrate> {
+  async CheckForShowRate(info: hallrate): Promise<hallrate> {
     try {
-      const sql = 'select * FROM hall_book_dashboard where hall_id=($1) and user_id=($2)';
+      const sql =
+        'select * FROM hall_book_dashboard where hall_id=($1) and user_id=($2)';
       // @ts-ignore
       const conn = await pool.connect();
-      const result = await conn.query(sql, [
-        info.hallid,info.userid
-      
-      ]);
+      const result = await conn.query(sql, [info.hallid, info.userid]);
       const data = result.rows[0];
       conn.release();
-     
 
       return data;
     } catch (err) {
       throw new Error(`${err}`);
-    }}
+    }
+  }
 
-  async getHallRate(id:number): Promise<hallrate> {
+  async getHallRate(id: number): Promise<hallrate> {
     try {
-      const sql = 'select sum(rate) as sumstar,count(rate) as numstar FROM hallrate where hallid=($1)';
+      const sql =
+        'select sum(rate) as sumstar,count(rate) as numstar FROM hallrate where hallid=($1)';
       // @ts-ignore
       const conn = await pool.connect();
       const result = await conn.query(sql, [id]);
       const data = result.rows[0];
       conn.release();
-   
+
       return data;
     } catch (err) {
       throw new Error(`${err}`);
     }
   }
-
-
-
-
 }

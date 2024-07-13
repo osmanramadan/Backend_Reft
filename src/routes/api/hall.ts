@@ -9,9 +9,9 @@ const UploadImageController = new uploadImageController();
 
 const hall: express.Router = express.Router();
 
-hall.get('/',hallcontroller.index);
-hall.get('/cities',hallcontroller.hallcities);
-hall.get('/getadminhalls',hallcontroller.adminindex);
+hall.get('/', hallcontroller.index);
+hall.get('/cities', hallcontroller.hallcities);
+hall.get('/getadminhalls', hallcontroller.adminindex);
 hall.get('/:id', hallcontroller.userindex);
 hall.get('/video/:filename', hallcontroller.getvideo);
 hall.get('/pdf/:filename', hallcontroller.getpdf);
@@ -24,7 +24,7 @@ hall.post(
   hallcontroller.create
 );
 hall.post('/delete/:id', hallcontroller.delete);
-hall.post('/addrate',verify,hallcontroller.addHallRate);
+hall.post('/addrate', verify, hallcontroller.addHallRate);
 hall.post('/showrate', hallcontroller.checkHallShowRate);
 hall.put('/', hallcontroller.update);
 

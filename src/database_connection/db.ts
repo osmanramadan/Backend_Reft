@@ -35,4 +35,3 @@ if (NODE_ENV === 'dev') {
 }
 
 export default pool;
-
