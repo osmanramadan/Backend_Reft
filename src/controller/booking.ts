@@ -86,6 +86,7 @@ export default class BookingController {
 
   ownerbooking = async (req: Request, res: Response) => {
     try {
+      console.log(req.params.id)
       const bookinfo: any = await bookingobject.ownerbooking(req.params.id);
       let data: dashboardbookinfo[] = [];
 
@@ -107,7 +108,7 @@ export default class BookingController {
           });
         }
       }
-
+      console.log(data,'****************************')       
       if (data) {
         res.json({ data: data, status: 'success' });
         return;

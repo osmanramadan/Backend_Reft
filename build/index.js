@@ -9,7 +9,7 @@ const cors_1 = __importDefault(require("cors"));
 const routes_1 = __importDefault(require("./routes"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const app = (0, express_1.default)();
-const port = process.env.PORT;
+const port = process.env.PORT||4000;
 dotenv_1.default.config();
 const corsoptions = {
     origin: process.env.FRONT_LINK,
