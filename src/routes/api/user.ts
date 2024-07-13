@@ -36,5 +36,4 @@ users.put('/updateuserpassword', usercontroller.updateuserpassword);
 
 users.get('/verifyuser', verify, usercontroller.showuserbytoken);
 
-
 export default users;

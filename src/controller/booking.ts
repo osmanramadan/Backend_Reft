@@ -10,7 +10,6 @@ const hallobject = new Hall();
 const userobject = new User();
 
 export default class BookingController {
-
   index = async (_req: Request, res: Response) => {
     try {
       const bookinfo: any = await bookingobject.index();
@@ -49,9 +48,7 @@ export default class BookingController {
   };
 
   teacherbooking = async (req: Request, res: Response) => {
-
     try {
-
       const bookinfo: any = await bookingobject.teacherbooking(req.params.id);
       let data: dashboardbookinfo[] = [];
 
@@ -75,7 +72,7 @@ export default class BookingController {
       }
 
       if (data) {
-        res.json({ data:[...new Set(data)], status: 'success' });
+        res.json({ data: [...new Set(data)], status: 'success' });
         return;
       }
       res.json({ status: 'fail' });
@@ -86,7 +83,6 @@ export default class BookingController {
       return;
     }
   };
-
 
   ownerbooking = async (req: Request, res: Response) => {
     try {
@@ -124,5 +120,4 @@ export default class BookingController {
       return;
     }
   };
-
 }

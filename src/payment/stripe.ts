@@ -5,14 +5,21 @@ import axios from 'axios';
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
 // Function to convert currency using ExchangeRate-API or any other service
-async function convertCurrency(from: string, to: string, amount: number): Promise<number> {
-  const response = await axios.get(`https://api.exchangerate-api.com/v4/latest/${from}`);
+async function convertCurrency(
+  from: string,
+  to: string,
+  amount: number
+): Promise<number> {
+  const response = await axios.get(
+    `https://api.exchangerate-api.com/v4/latest/${from}`
+  );
   const rate = response.data.rates[to];
   return amount * rate;
 }
 
-export const createOrderByStripe = async (priceInEgp: number): Promise<string | null> => {
-    
+export const createOrderByStripe = async (
+  priceInEgp: number
+): Promise<string | null> => {
   // Convert EGP to USD
   const priceInUsd = await convertCurrency('EGP', 'USD', priceInEgp);
   const priceInCents = Math.round(priceInUsd * 100);
@@ -22,12 +29,12 @@ export const createOrderByStripe = async (priceInEgp: number): Promise<string | 
       price_data: {
         currency: 'usd',
         product_data: {
-          name: 'Total Purchase',
+          name: 'Total Purchase'
         },
-        unit_amount: priceInCents,
+        unit_amount: priceInCents
       },
-      quantity: 1,
-    },
+      quantity: 1
+    }
   ];
 
   // Create Stripe Checkout Session
@@ -35,18 +42,18 @@ export const createOrderByStripe = async (priceInEgp: number): Promise<string | 
     line_items: lineItems,
     mode: 'payment',
     success_url: `${process.env.FRONT_LINK}/processing-stripe-payment?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${process.env.FRONT_LINK}/fail-payment`,
+    cancel_url: `${process.env.FRONT_LINK}/fail-payment`
   });
 
   return session.url;
 };
 
-
-export const capturePaymentStipe= async (sessionid:any)=> {
-    const result = Promise.all([
-        stripe.checkout.sessions.retrieve(sessionid, { expand: ['payment_intent.payment_method'] }),
-        stripe.checkout.sessions.listLineItems(sessionid)
-    ])
-    return result
-  };
-  
+export const capturePaymentStipe = async (sessionid: any) => {
+  const result = Promise.all([
+    stripe.checkout.sessions.retrieve(sessionid, {
+      expand: ['payment_intent.payment_method']
+    }),
+    stripe.checkout.sessions.listLineItems(sessionid)
+  ]);
+  return result;
+};

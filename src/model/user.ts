@@ -178,7 +178,7 @@ export class User {
       // @ts-ignore
       const conn = await pool.connect();
       const result = await conn.query(sql_valid, [email, resetCode]);
-      
+
       if (result.rowCount === 1) {
         const result_time = await conn.query(sql_expire, [email, resetCode]);
         conn.release();

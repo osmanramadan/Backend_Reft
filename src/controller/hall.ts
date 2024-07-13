@@ -9,10 +9,8 @@ const hallobject = new Hall();
 const userobject = new UserController();
 
 export default class HallController {
-
   index = async (_req: Request, res: Response) => {
     try {
-     
       const halls = await hallobject.index();
       const data = [];
       if (halls) {
@@ -254,14 +252,11 @@ export default class HallController {
     const pdfPath = path.join(__dirname, '../uploads/pdfs', filename);
 
     if (fs.existsSync(pdfPath)) {
-
-
       const stat = fs.statSync(pdfPath);
       const fileSize = stat.size;
       const range = req.headers.range;
 
       if (range) {
-   
         const parts = range.replace(/bytes=/, '').split('-');
         const start = parseInt(parts[0], 10);
         const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
@@ -374,8 +369,6 @@ export default class HallController {
 
   update = async (req: Request, res: Response) => {
     try {
-  
-
       const updated = await hallobject.update(req.body.checked, req.body.id);
       if (updated) {
         res.json({ status: 'success' });
@@ -420,6 +413,4 @@ export default class HallController {
       return;
     }
   };
-
-
 }

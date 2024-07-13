@@ -44,14 +44,10 @@ async function generateAccessToken(): Promise<string> {
   return response.data.access_token;
 }
 
-
-
 // Function to create a PayPal order
 export const createOrder = async (price: number): Promise<string[]> => {
   try {
-    
     const accessToken = await generateAccessToken();
-    
 
     const response: AxiosResponse<CreateOrderResponse> = await axios({
       url: `${process.env.PAYPAL_HOME}/v2/checkout/orders`,
@@ -93,8 +89,6 @@ export const createOrder = async (price: number): Promise<string[]> => {
     throw new Error('Order creation failed.');
   }
 };
-
-
 
 export const capturePayment = async (
   orderId: any

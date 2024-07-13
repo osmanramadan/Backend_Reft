@@ -10,8 +10,6 @@ const userobject = new User();
 const cipher = new Cipher();
 
 export default class UserController {
-
-
   index = async (_req: Request, res: Response) => {
     try {
       const allusers = await userobject.index();
@@ -70,7 +68,6 @@ export default class UserController {
 
   getuserbycredentials = async (req: Request, res: Response) => {
     try {
-      
       const existemail = await userobject.emailExists(req.body.email);
       if (existemail) {
         const userbyemail = await userobject.getuserbycredentials(
@@ -131,7 +128,6 @@ export default class UserController {
 
   create = async (req: Request, res: Response) => {
     try {
-
       // @ts-ignore
       const userquery: user = {
         email: req.body.email,
@@ -165,7 +161,6 @@ export default class UserController {
       const token = await generatetoken(newuser);
       res.json({ token: token });
       return;
-
     } catch (err) {
       res.status(400);
       res.json({ status: 'fail' });
@@ -260,20 +255,19 @@ export default class UserController {
         res.json({ status: 'invalid code' });
         return;
       }
-    
+
       if (result === 'expired code') {
         res.status(400);
         res.json({ status: 'expired code' });
         return;
       }
-      
+
       const check = await userobject.checkVerifyCode(req.body.email);
       if (check) {
         res.status(400);
         res.json({ status: 'already verified' });
         return;
       }
-
 
       const updated = await userobject.updateUserFields({
         email: req.body.email,

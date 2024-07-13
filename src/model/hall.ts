@@ -6,7 +6,6 @@ import { hall, hallrate } from '../types/hall';
 dotenv.config();
 
 export class Hall {
-
   async index(): Promise<hall[]> {
     try {
       // @ts-ignore
