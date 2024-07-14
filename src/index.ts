@@ -31,11 +31,11 @@ app.use(bodyParser.json());
 
 app.use(routes);
 
-app.listen();
+// app.listen();
 
-// app.listen(port, async (): Promise<void> => {
-//   const url = `http://localhost:${port}`;
-//   console.log(`Open ${url} to review the project..`);
-// });
+app.listen(port, async (): Promise<void> => {
+  const url = `http://localhost:${port}`;
+  console.log(`Open ${url} to review the project..`);
+});
 
 export default app;
