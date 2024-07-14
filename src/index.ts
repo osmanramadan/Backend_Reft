@@ -10,7 +10,7 @@ const port = process.env.PORT;
 dotenv.config();
 
 const corsoptions = {
-  origin: process.env.FRONT_LINK,
+  origin:process.env.NODE_ENV==='dev'?process.env.DEV_FRONT_LINK:process.env.PROD_FRONT_LINK,
   optionsSuccessStatus: 200
 };
 
