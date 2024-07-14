@@ -9,10 +9,10 @@ const port = process.env.PORT;
 
 dotenv.config();
 
-const corsoptions = {
-  origin:process.env.NODE_ENV==='dev'?process.env.DEV_FRONT_LINK:process.env.PROD_FRONT_LINK,
-  optionsSuccessStatus: 200
-};
+// const corsoptions = {
+//   origin:process.env.NODE_ENV==='dev'?process.env.DEV_FRONT_LINK:process.env.PROD_FRONT_LINK,
+//   optionsSuccessStatus: 200
+// };
 
 // const options = {
 //   uploadDir: path.join(__dirname, 'uploads'),
@@ -25,15 +25,17 @@ const corsoptions = {
 // app.use(formData.stream());
 // app.use(formData.union());
 
-app.use(cors(corsoptions));
+// app.use(cors(corsoptions));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(routes);
 
-app.listen(port, async (): Promise<void> => {
-  const url = `http://localhost:${port}`;
-  console.log(`Open ${url} to review the project..`);
-});
+app.listen();
+
+// app.listen(port, async (): Promise<void> => {
+//   const url = `http://localhost:${port}`;
+//   console.log(`Open ${url} to review the project..`);
+// });
 
 export default app;
