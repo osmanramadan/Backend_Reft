@@ -8,7 +8,7 @@ class MessageController {
             try {
                 const messages = await messageobject.index();
                 if (messages) {
-                    res.json({ data: messages, status: "success" });
+                    res.json({ data: messages, status: 'success' });
                     return;
                 }
                 res.json({ status: 'fail' });

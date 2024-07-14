@@ -30,6 +30,30 @@ class UserController {
                 return userbyid;
             }
         };
+        this.showuserbytoken = async (req, res) => {
+            try {
+                // @ts-ignore
+                const userbyid = await userobject.show(req.userid);
+                // @ts-ignore
+                delete userbyid.password;
+                delete userbyid.password_changed_at;
+                delete userbyid.password_verified_code;
+                delete userbyid.reset_code_verified;
+                delete userbyid.password_reset_expires;
+                if (userbyid) {
+                    res.json({ status: 'success', data: userbyid });
+                    return;
+                }
+                res.status(400);
+                res.json({ status: 'fail' });
+                return;
+            }
+            catch (err) {
+                res.status(400);
+                res.json({ status: 'fail' });
+                return;
+            }
+        };
         this.delete = async (req, res) => {
             try {
                 const deleted = await userobject.deleteuser(req.params.id);
@@ -102,6 +126,7 @@ class UserController {
         };
         this.create = async (req, res) => {
             try {
+                // @ts-ignore
                 const userquery = {
                     email: req.body.email,
                     username: req.body.username,
@@ -213,15 +238,15 @@ class UserController {
                     res.json({ status: 'invalid code' });
                     return;
                 }
+                if (result === 'expired code') {
+                    res.status(400);
+                    res.json({ status: 'expired code' });
+                    return;
+                }
                 const check = await userobject.checkVerifyCode(req.body.email);
                 if (check) {
                     res.status(400);
                     res.json({ status: 'already verified' });
-                    return;
-                }
-                if (result === 'expired code') {
-                    res.status(400);
-                    res.json({ status: 'expired code' });
                     return;
                 }
                 const updated = await userobject.updateUserFields({

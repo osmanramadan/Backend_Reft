@@ -37,7 +37,7 @@ class Hall {
         try {
             // @ts-ignore
             const conn = await db_1.default.connect();
-            const sql = "SELECT city FROM hall";
+            const sql = 'SELECT city FROM hall';
             const result = await conn.query(sql);
             conn.release();
             return result.rows;
@@ -137,7 +137,6 @@ class Hall {
             return hall;
         }
         catch (err) {
-            console.log(err);
             throw new Error(`Error ${err}`);
         }
     }
@@ -186,9 +185,7 @@ class Hall {
             const sql = 'select * FROM hallrate where hallid=($1) and userid=($2)';
             // @ts-ignore
             const conn = await db_1.default.connect();
-            const result = await conn.query(sql, [
-                info.hallid, info.userid
-            ]);
+            const result = await conn.query(sql, [info.hallid, info.userid]);
             const data = result.rows[0];
             conn.release();
             return data;
@@ -202,9 +199,7 @@ class Hall {
             const sql = 'select * FROM hall_book_dashboard where hall_id=($1) and user_id=($2)';
             // @ts-ignore
             const conn = await db_1.default.connect();
-            const result = await conn.query(sql, [
-                info.hallid, info.userid
-            ]);
+            const result = await conn.query(sql, [info.hallid, info.userid]);
             const data = result.rows[0];
             conn.release();
             return data;

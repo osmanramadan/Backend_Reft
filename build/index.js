@@ -9,7 +9,7 @@ const cors_1 = __importDefault(require("cors"));
 const routes_1 = __importDefault(require("./routes"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const app = (0, express_1.default)();
-const port = process.env.PORT||4000;
+const port = process.env.PORT || 3006;
 dotenv_1.default.config();
 const corsoptions = {
     origin: process.env.FRONT_LINK,
@@ -28,8 +28,5 @@ app.use((0, cors_1.default)(corsoptions));
 app.use(body_parser_1.default.urlencoded({ extended: false }));
 app.use(body_parser_1.default.json());
 app.use(routes_1.default);
-app.listen(port, async () => {
-    const url = `http://localhost:${port}`;
-    console.log(`Open ${url} to review the project..`);
-});
+app.listen();
 exports.default = app;

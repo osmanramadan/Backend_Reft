@@ -9,7 +9,6 @@ const hall_1 = __importDefault(require("./api/hall"));
 const message_1 = __importDefault(require("./api/message"));
 const checkout_1 = __importDefault(require("./api/checkout"));
 const booking_1 = __importDefault(require("./api/booking"));
-// import verify from '../authorization/middelware/jwtmiddelware';
 const routes = express_1.default.Router();
 routes.use('/api/v1/users', user_1.default);
 routes.use('/api/v1/halls', hall_1.default);

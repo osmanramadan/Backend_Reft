@@ -64,7 +64,6 @@ class User {
     async getuserbycredentials(email, password) {
         try {
             const sql = 'SELECT * FROM users WHERE email=($1)';
-            console.log("inside");
             // @ts-ignore
             const conn = await db_1.default.connect();
             const result = await conn.query(sql, [email]);
@@ -86,7 +85,6 @@ class User {
             const sql = 'SELECT * FROM users WHERE email = $1';
             // @ts-ignore
             const conn = await db_1.default.connect();
-            console.log(conn);
             const result = await conn.query(sql, [email]);
             conn.release();
             if (result.rows.length) {
@@ -126,7 +124,6 @@ class User {
             const sql = 'SELECT EXISTS(SELECT 1 FROM users WHERE email = $1)';
             // @ts-ignore
             const conn = await db_1.default.connect();
-            console.log(conn);
             const result = await conn.query(sql, [email]);
             conn.release();
             return result.rows[0].exists;
@@ -177,9 +174,9 @@ class User {
             // @ts-ignore
             const conn = await db_1.default.connect();
             const result = await conn.query(sql_valid, [email, resetCode]);
-            conn.release();
             if (result.rowCount === 1) {
                 const result_time = await conn.query(sql_expire, [email, resetCode]);
+                conn.release();
                 if (result_time.rowCount === 1) {
                     return 'valid code';
                 }

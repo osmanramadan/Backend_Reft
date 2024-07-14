@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const hall_1 = __importDefault(require("../../controller/hall"));
-// import verify from '../../authorization/middelware/jwtmiddelware';
 const hallValidator_1 = require("../../utils/validator/hallValidator");
 const imageupload_1 = __importDefault(require("../../authorization/middelware/imageupload"));
 const jwtmiddelware_1 = __importDefault(require("../../authorization/middelware/jwtmiddelware"));

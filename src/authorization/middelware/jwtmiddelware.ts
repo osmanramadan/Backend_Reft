@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const TOKEN_SECRET: string = process.env.TOKEN_SECRET as string;
-
+let x=0;
 const verify: RequestHandler = async (
   req: express.Request,
   res: express.Response,
@@ -16,7 +16,8 @@ const verify: RequestHandler = async (
     const authorizationHeader = req.headers.authorization as string;
     const token = authorizationHeader.split(' ')[1];
     const decoded = jwt.verify(token, TOKEN_SECRET);
-    console.log('hello');
+    x++
+    console.log(x)
     // @ts-ignore
     req.userid = decoded.userid;
     next();

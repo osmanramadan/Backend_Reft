@@ -29,7 +29,6 @@ class Checkout {
             return book;
         }
         catch (err) {
-            console.log(err);
             throw new Error(`Error ${err}`);
         }
     }
@@ -48,13 +47,11 @@ class Checkout {
                 dashboardbookinfo.amount,
                 dashboardbookinfo.secretcode
             ]);
-            console.log(result, '-------------->>>>>');
             const book = result.rows[0];
             conn.release();
             return book;
         }
         catch (err) {
-            console.log(err, 'osman');
             throw new Error(`Error ${err}`);
         }
     }
@@ -79,7 +76,6 @@ class Checkout {
             return book;
         }
         catch (err) {
-            console.log(err);
             throw new Error(`Error ${err}`);
         }
     }
@@ -104,7 +100,6 @@ class Checkout {
             return book;
         }
         catch (err) {
-            console.log(err);
             throw new Error(`Error ${err}`);
         }
     }
@@ -130,7 +125,6 @@ class Checkout {
             return book;
         }
         catch (err) {
-            console.log(err);
             throw new Error(`Error ${err}`);
         }
     }
@@ -138,7 +132,7 @@ class Checkout {
         try {
             // @ts-ignore
             const conn = await db_1.default.connect();
-            const sql = "SELECT code FROM hall_book where hall_id=($1)";
+            const sql = 'SELECT code FROM hall_book where hall_id=($1)';
             const result = await conn.query(sql, [hallid]);
             conn.release();
             return result.rows;

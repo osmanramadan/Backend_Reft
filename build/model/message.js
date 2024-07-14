@@ -43,8 +43,6 @@ class Message {
             const sql = 'INSERT INTO user_message(name, phone, email, message, user_id)VALUES ($1,$2,$3,$4,$5) RETURNING *';
             // @ts-ignore
             const conn = await db_1.default.connect();
-            // @ts-ignore
-            console.log(db_1.default, '-------------------------->');
             const result = await conn.query(sql, [
                 M.name,
                 M.phone,
@@ -57,7 +55,6 @@ class Message {
             return message;
         }
         catch (err) {
-            console.log(err);
             throw new Error(`Error ${err}`);
         }
     }

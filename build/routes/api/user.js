@@ -9,14 +9,13 @@ const jwtmiddelware_1 = __importDefault(require("../../authorization/middelware/
 const authValidator_1 = require("../../utils/validator/authValidator");
 const usercontroller = new user_1.default();
 const users = express_1.default.Router();
-users.get('/', jwtmiddelware_1.default, usercontroller.index);
+users.get('/', usercontroller.index);
 users.post('/signup', usercontroller.create);
 users.post('/login', usercontroller.getuserbycredentials);
 users.post('/forgotPassword', authValidator_1.forgetPasswordValidator, usercontroller.forgetpassword);
 users.post('/verifyResetCode', authValidator_1.verifyPasswordValidator, usercontroller.verifyresetcode);
 users.post('/resetPassword', authValidator_1.resetPasswordValidator, usercontroller.resetpassword);
-users.put('/updateuserprofile', usercontroller.updateuserprofile);
+users.put('/updateuserprofile', jwtmiddelware_1.default, usercontroller.updateuserprofile);
 users.put('/updateuserpassword', usercontroller.updateuserpassword);
-// users.get('/:id', verify, usercontroller.show);
-// users.delete('/delete/:id', verify, usercontroller.delete);
+users.get('/verifyuser', jwtmiddelware_1.default, usercontroller.showuserbytoken);
 exports.default = users;
