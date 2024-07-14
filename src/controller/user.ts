@@ -17,6 +17,7 @@ export default class UserController {
       return;
     } catch (e) {
       res.status(400);
+      console.log(e)
       res.json({ status: 'fail' });
       return;
     }
