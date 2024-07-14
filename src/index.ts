@@ -9,10 +9,11 @@ const port = process.env.PORT;
 
 dotenv.config();
 
-// const corsoptions = {
-//   origin:process.env.NODE_ENV==='dev'?process.env.DEV_FRONT_LINK:process.env.PROD_FRONT_LINK,
-//   optionsSuccessStatus: 200
-// };
+const corsoptions = {
+  origin:"https://backend-reft-website-4.onrender.com",
+  // origin:process.env.NODE_ENV==='dev'?process.env.DEV_FRONT_LINK:process.env.PROD_FRONT_LINK,
+  optionsSuccessStatus: 200
+};
 
 // const options = {
 //   uploadDir: path.join(__dirname, 'uploads'),
@@ -25,7 +26,7 @@ dotenv.config();
 // app.use(formData.stream());
 // app.use(formData.union());
 
-// app.use(cors(corsoptions));
+app.use(cors(corsoptions));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
