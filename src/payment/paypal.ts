@@ -67,8 +67,8 @@ export const createOrder = async (price: number): Promise<string[]> => {
           }
         ],
         application_context: {
-          return_url: `https://backend-reft-website-4.onrender.com/processing-payment`,
-          cancel_url: `https://backend-reft-website-4.onrender.com/fail-payment`,
+          return_url: `https://frontend-reft-website.vercel.app/processing-payment`,
+          cancel_url: `https://frontend-reft-website.vercel.app/fail-payment`,
           shipping_preference: 'NO_SHIPPING',
           user_action: 'PAY_NOW',
           brand_name: 'reft'

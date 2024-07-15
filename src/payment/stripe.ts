@@ -41,7 +41,7 @@ export const createOrderByStripe = async (
   const session = await stripe.checkout.sessions.create({
     line_items: lineItems,
     mode: 'payment',
-    success_url: `https://backend-reft-website-4.onrender.com/processing-stripe-payment?session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `https://frontend-reft-website.vercel.app/processing-stripe-payment?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.NODE_ENV === 'dev' ? process.env.DEV_FRONT_LINK : process.env.PROD_FRONT_LINK}/fail-payment`
   });
 
