@@ -16,7 +16,7 @@ const {
 
 let pool;
 
-if (NODE_ENV === 'prod') {
+if (NODE_ENV =='prod') {
   pool = new Pool({
     host:PROD_POSTGRES_HOST,
     database:PROD_POSTGRES_DB,
@@ -30,12 +30,12 @@ if (NODE_ENV === 'prod') {
   });
 }
 
-if (NODE_ENV === 'dev') {
+if (NODE_ENV == 'dev') {
   pool = new Pool({
     host:POSTGRES_HOST,
     database:DEV_POSTGRES_DB,
     user:POSTGRES_USER,
-    password: POSTGRES_PASSWORD,
+    password:POSTGRES_PASSWORD,
     port: 5433
   });
 }
