@@ -67,8 +67,8 @@ export const createOrder = async (price: number): Promise<string[]> => {
           }
         ],
         application_context: {
-          return_url: `${process.env.NODE_ENV=='dev'?process.env.DEV_FRONT_LINK:process.env.PROD_FRONT_LINK}/processing-payment`,
-          cancel_url: `${process.env.NODE_ENV=='dev'?process.env.DEV_FRONT_LINK:process.env.PROD_FRONT_LINK}/fail-payment`,
+          return_url: `http://localhost:3000/processing-payment`,
+          cancel_url: `http://localhost:3000/fail-payment`,
           shipping_preference: 'NO_SHIPPING',
           user_action: 'PAY_NOW',
           brand_name: 'reft'
