@@ -10,9 +10,10 @@ const port = process.env.PORT;
 dotenv.config();
 
 const corsoptions = {
-  origin:"https://backend-reft-website-4.onrender.com",
-  // origin:process.env.NODE_ENV==='dev'?process.env.DEV_FRONT_LINK:process.env.PROD_FRONT_LINK,
-  optionsSuccessStatus: 200
+  origin:process.env.NODE_ENV==='dev'?process.env.DEV_FRONT_LINK:process.env.PROD_FRONT_LINK,
+  optionsSuccessStatus: 200,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Allow cookies
 };
 
 // const options = {
@@ -31,8 +32,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(routes);
-
-// app.listen();
 
 app.listen(port, async (): Promise<void> => {
   const url = `http://localhost:${port}`;
