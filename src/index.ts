@@ -9,15 +9,16 @@ const port = process.env.PORT;
 
 dotenv.config();
 
-const corsoptions = {
-  origin:process.env.NODE_ENV==='dev'?process.env.DEV_FRONT_LINK:process.env.PROD_FRONT_LINK,
-  optionsSuccessStatus: 200
-};
+// const corsoptions = {
+//   origin:process.env.NODE_ENV==='dev'?process.env.DEV_FRONT_LINK:process.env.PROD_FRONT_LINK,
+//   optionsSuccessStatus: 200
+// };
 
 // const options = {
 //   uploadDir: path.join(__dirname, 'uploads'),
 //   autoClean: true
 // };
+
 
 // Use express-form-data middleware with the provided options
 // app.use(formData.parse(options));
