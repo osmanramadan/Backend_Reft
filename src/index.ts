@@ -11,9 +11,7 @@ dotenv.config();
 
 const corsoptions = {
   origin:process.env.NODE_ENV==='dev'?process.env.DEV_FRONT_LINK:process.env.PROD_FRONT_LINK,
-  optionsSuccessStatus: 200,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // Allow cookies
+  optionsSuccessStatus: 200
 };
 
 // const options = {
@@ -27,7 +25,7 @@ const corsoptions = {
 // app.use(formData.stream());
 // app.use(formData.union());
 
-app.use(cors(corsoptions));
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
