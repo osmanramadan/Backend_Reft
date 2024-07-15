@@ -41,8 +41,8 @@ export const createOrderByStripe = async (
   const session = await stripe.checkout.sessions.create({
     line_items: lineItems,
     mode: 'payment',
-    success_url: `${process.env.FRONT_LINK}/processing-stripe-payment?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${process.env.FRONT_LINK}/fail-payment`
+    success_url: `${process.env.NODE_ENV=='dev'?process.env.DEV_FRONT_LINK:process.env.PROD_FRONT_LINK}/processing-stripe-payment?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${process.env.NODE_ENV=='dev'?process.env.DEV_FRONT_LINK:process.env.PROD_FRONT_LINK}/fail-payment`
   });
 
   return session.url;
