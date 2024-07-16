@@ -1,15 +1,58 @@
 
 
-# Hospital Management System (HMS) API
+# REFT (Rent Easy For Teacher) API
 
-**API endpoints for hospital management using Laravel**
+**API endpoints for teacher booking system**
 
 ## Overview
 
-The Hospital Management System (HMS) API provides a set of endpoints to manage hospital operations, appointments, departments, doctors, patients, and user authentication. This README file outlines the available endpoints, their functionalities, and installation instructions.
+REFT API provides a set of endpoints to manage booking operations, checkout , messages ,halls, and user authentication. This README file outlines the available endpoints, their functionalities, and installation instructions.
 
 ---
+## Required Technologies
 
+- Postgres for the database
+- Node/Express for the application logic
+- dotenv from npm for managing environment variables
+- db-migrate from npm for migrations
+- jsonwebtoken from npm for working with JWTs
+
+## Installation Instructions
+
+```bash
+ npm run install
+```
+- Setting .env
+```bash
+    POSTGRES_HOST          =localhost
+    PROD_POSTGRES_HOST     =
+    DEV_FRONT_LINK         =
+    PROD_FRONT_LINK        =
+    PORT                   =3006
+    DEV_POSTGRES_DB        =
+    PROD_POSTGRES_DB       =
+    POSTGRES_USER          =
+    POSTGRES_PASSWORD      =
+    PROD_POSTGRES_PASSWORD =
+    POSTGRES_PORT          =
+    # Switch Between dev or prod
+    NODE_ENV               =dev
+    TOKEN_SECRET           =
+    JWT_EXPIRES_IN         =
+    BCRYPT_PASSWORD        =
+    SALT_ROUNDS            =
+    # EMAIL SETTINGS
+    EMAIL_HOST             =
+    EMAIL_PASSWORD         =
+    EMAIL_PORT             =
+    #paypal
+    PAYPAL_CLIENT_ID       =
+    PAYPAL_SECRET          =
+    PAYPAL_HOME            =
+    #stripe
+    STRIPE_SECRET_KEY      =
+
+```
 ## Endpoints
 
 ### Authentication
