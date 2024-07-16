@@ -69,6 +69,16 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 - **POST /forgotPassword**
   - forgot password endpoint to renew password.
       - **required inputs** { email}
+        
+- **POST /verifyResetCode**
+  - verify reset code to renew password.
+      - **required inputs** {email,resetCode}
+      - 
+- **POST /resetPassword**
+  - reset password and setting new password
+      - **required inputs** {email,newpassword}
+    
+** THE REST ENDPOINTS ARE UNUSED
 
 ### Appointments
 
