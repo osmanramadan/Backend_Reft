@@ -28,10 +28,8 @@ if (NODE_ENV =='prod') {
       // Or specify your SSL configuration properly
   }
   });
-}
-
-if (NODE_ENV == 'dev') {
-  pool = new Pool({
+}else{
+    pool = new Pool({
     host:POSTGRES_HOST,
     database:DEV_POSTGRES_DB,
     user:POSTGRES_USER,
@@ -39,5 +37,15 @@ if (NODE_ENV == 'dev') {
     port: 5433
   });
 }
+
+// if (NODE_ENV == 'dev') {
+//   pool = new Pool({
+//     host:POSTGRES_HOST,
+//     database:DEV_POSTGRES_DB,
+//     user:POSTGRES_USER,
+//     password:POSTGRES_PASSWORD,
+//     port: 5433
+//   });
+// }
 
 export default pool;

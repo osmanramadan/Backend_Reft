@@ -3,6 +3,7 @@ import { createOrder, capturePayment } from '../payment/paypal';
 import { createOrderByStripe, capturePaymentStipe } from '../payment/stripe';
 import { Checkout } from '../model/checkout';
 import { bookinfo, dashboardbookinfo } from '../types/bookinfo';
+import message from '../routes/api/message';
 
 const checkout = new Checkout();
 
@@ -15,7 +16,7 @@ export default class PaymentController {
       return;
     } catch (err) {
       res.status(400);
-      res.json({ status: 'fail' });
+      res.json({ status: 'fail',message:err });
       return;
     }
   };
@@ -27,7 +28,7 @@ export default class PaymentController {
       return;
     } catch (err) {
       res.status(400);
-      res.json({ status: 'fail' });
+      res.json({ status: 'fail',message:err });
       return;
     }
   };
