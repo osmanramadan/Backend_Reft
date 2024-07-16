@@ -190,7 +190,7 @@ export default class PaymentController {
       }
     } catch (e) {
       res.status(400);
-      res.json({ status: 'fail' });
+      res.json({ status: 'fail',message:e });
       return;
     }
   };
