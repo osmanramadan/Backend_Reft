@@ -56,12 +56,19 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 ## Endpoints
 
 ### Authentication
-
+# main endpoint:/api/v1/users
 - **POST /signup**
   - Create a new user account.
-       - required email,username,password,phone,city,role
+       - **required inputs** { email,username,password,phone,city,role}
 - **POST /login**
   - Authenticate user credentials.
+      - **required inputs** { email,password}
+- **POST /forgotPassword**
+  - forgot password endpoint to renew password.
+      - **required inputs** { email}
+ - **POST /forgotPassword**
+  - forgot password endpoint to renew password.
+      - **required inputs** { email}
 
 ### Appointments
 
