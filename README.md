@@ -24,13 +24,13 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 ```
 - Setting .env
 ```bash
-    POSTGRES_HOST          =localhost
+    POSTGRES_HOST          =
     PROD_POSTGRES_HOST     =
     DEV_FRONT_LINK         =
     PROD_FRONT_LINK        =
     #Switch Between dev or prod
-    NODE_ENV               =dev
-    PORT                   =3006
+    NODE_ENV               =
+    PORT                   =
     DEV_POSTGRES_DB        =
     PROD_POSTGRES_DB       =
     POSTGRES_USER          =
@@ -56,7 +56,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 ## Endpoints
 
 ### Authentication
-# main endpoint:/api/v1/users
+#### main endpoint:/api/v1/users
 - **POST /signup**
   - Create a new user account.
        - **required inputs** { email,username,password,phone,city,role}
