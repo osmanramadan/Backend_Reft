@@ -55,7 +55,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 ```
 ## Endpoints
 
-### Authentication
+                                                                          ### Authentication
 
 #### main endpoint:/api/v1/users
 
@@ -89,7 +89,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 
 
 
-### Halls
+                                                                    ### Halls
 
 #### main endpoint:/api/v1/halls
 
@@ -140,13 +140,6 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
           rate
       };
 
-- **POST /addrate**
-  - Add rate to specific hall
-     - **required inputs**  {
-          hallid,
-          userid,
-          rate
-      };
 
 - **POST /showrate**
   - show rate of specific hall
@@ -164,43 +157,6 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 
 
 
-    
-
-
-
-
-### Doctors
-
-- **POST /doctors**
-  - Add a new doctor (Admin only).
-- **GET /doctors**
-  - Retrieve all doctors (Admin only).
-- **GET /doctor/:id**
-  - Get details of a specific doctor (Admin or Doctor).
-- **PUT /doctor/:id**
-  - Update a specific doctor (Admin or Doctor).
-- **DELETE /doctor/:id**
-  - Delete a specific doctor (Admin or Doctor).
-
-### Patients
-
-- **POST /patients**
-  - Add a new patient (Admin only).
-- **GET /patients**
-  - Retrieve all patients (Admin only).
-- **GET /patient/:_id**
-  - Get details of a specific patient (Admin or Patient).
-- **PUT /patient/:_id**
-  - Update a specific patient (Admin or Patient).
-- **DELETE /patient/:_id**
-  - Delete a specific patient (Admin or Patient).
-
-### Users
-
-- **GET /user**
-  - Retrieve all users (Admin only).
-- **GET /user/:_id**
-  - Get details of a specific user (Admin only).
 
 ---
 
