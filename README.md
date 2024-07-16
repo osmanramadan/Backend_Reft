@@ -56,7 +56,9 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 ## Endpoints
 
 ### Authentication
+
 #### main endpoint:/api/v1/users
+
 - **POST /signup**
   - Create a new user account.
        - **required inputs** { email,username,password,phone,city,role}
@@ -73,44 +75,99 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 - **POST /verifyResetCode**
   - verify reset code to renew password.
       - **required inputs** {email,resetCode}
-      - 
+        
 - **POST /resetPassword**
   - reset password and setting new password
       - **required inputs** {email,newpassword}
+
+        
+- **GET /verifyuser**
+  - Get user info by token and check if JWT period is expired or not (used in frontend to identify the period should user spend in system to login again)
+      - **required inputs**  userid _Coming from token after parsing_
     
 ***THE REST ENDPOINTS ARE UNUSED***
 
-### Authorization
 
-### Appointments
 
-- **GET /appointment**
-  - Retrieve all appointments (Admin only).
-- **POST /appointment**
-  - Create a new appointment (Admin or Patient).
-- **GET /appointment/:id**
-  - Get details of a specific appointment (Admin or Patient).
-- **PUT /appointment/:id**
-  - Update a specific appointment (Admin or Patient).
-- **DELETE /appointment/:id**
-  - Delete a specific appointment (Admin or Patient).
+### Halls
+
+#### main endpoint:/api/v1/halls
 
 ### Departments
 
-- **POST /departments**
-  - Add a new department (Admin only).
-- **GET /departments**
-  - Retrieve all departments (Admin only).
-- **GET /department/doctors/:_id**
-  - Retrieve doctors in a specific department (Admin only).
-- **GET /department/patients/:_id**
-  - Retrieve patients in a specific department (Admin only).
-- **GET /department/:_id**
-  - Get details of a specific department (Admin only).
-- **DELETE /department/:_id**
-  - Delete a specific department (Admin only).
-- **PUT /department/:_id**
-  - Update a specific department (Admin only).
+- **GET /**
+  - Get all halls.
+    
+- **GET /cities**
+  - Retrieve all cities.
+    
+- **GET /getadminhalls**
+  - Retrieve all halls which are unchecked to make admin cofirm it.
+    
+- **GET /:id**
+  - Retrieve all halls of specific user.
+    
+- **GET /video/:filename**
+  - Retrieve video by its name.
+    
+- **GET /pdf/:filename**
+  - Retrieve pdf by its name.
+ 
+- **POST /addhall**
+  - Add new hall by owner
+     - **required inputs**  {
+        name,
+        capacity,
+        city,
+        price,
+        location,
+        details,
+        images,
+        imageCover,
+        pdf,
+        video,
+        user_id
+      };
+
+- **POST /delete/:id**
+  - Delete hall by its paramter id.
+
+- **POST /addrate**
+  - Add rate to specific hall
+     - **required inputs**  {
+          hallid,
+          userid,
+          rate
+      };
+
+- **POST /addrate**
+  - Add rate to specific hall
+     - **required inputs**  {
+          hallid,
+          userid,
+          rate
+      };
+
+- **POST /showrate**
+  - show rate of specific hall
+     - **required inputs**  {
+          hallid,
+          userid
+      };
+
+- **PUT /**
+  - Update status of specific hall (only for admin)
+     - **required inputs**  {
+          checked,
+          id
+      }; 
+
+
+
+    
+
+
+
 
 ### Doctors
 
@@ -149,8 +206,8 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 
 ## Authentication and Authorization
 
-- Authentication is required for most routes using JWT tokens (`protect` middleware).
-- Different roles (admin, doctor, patient) have different levels of access (`restrictedTo` middleware).
+- Authentication is required for most routes using JWT tokens (`verify` middleware).
+
 
 ---
 
