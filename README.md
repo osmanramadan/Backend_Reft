@@ -28,6 +28,8 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
     PROD_POSTGRES_HOST     =
     DEV_FRONT_LINK         =
     PROD_FRONT_LINK        =
+    #Switch Between dev or prod
+    NODE_ENV               =dev
     PORT                   =3006
     DEV_POSTGRES_DB        =
     PROD_POSTGRES_DB       =
@@ -35,8 +37,6 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
     POSTGRES_PASSWORD      =
     PROD_POSTGRES_PASSWORD =
     POSTGRES_PORT          =
-    # Switch Between dev or prod
-    NODE_ENV               =dev
     TOKEN_SECRET           =
     JWT_EXPIRES_IN         =
     BCRYPT_PASSWORD        =
@@ -59,6 +59,12 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 
 - **POST /signup**
   - Create a new user account.
+        email: req.body.email,
+        username: req.body.username,
+        password: req.body.password,
+        phone: req.body.phone,
+        city: req.body.city,
+        role: req.body.role
 - **POST /login**
   - Authenticate user credentials.
 
