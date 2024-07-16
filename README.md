@@ -78,7 +78,9 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
   - reset password and setting new password
       - **required inputs** {email,newpassword}
     
-** THE REST ENDPOINTS ARE UNUSED
+***THE REST ENDPOINTS ARE UNUSED***
+
+### Authorization
 
 ### Appointments
 
