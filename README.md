@@ -55,7 +55,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 ```
 ## Endpoints
 
-**************************************************************** ### Authentication 
+**************************************************************** # Authentication 
 
 #### main endpoint:/api/v1/users
 
@@ -88,11 +88,10 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 ***THE REST ENDPOINTS ARE UNUSED***
 
 
-**************************************************************** ### Halls  
+**************************************************************** ### Halls
 
 #### main endpoint:/api/v1/halls
 
-### Departments
 
 - **GET /**
   - Get all halls.
