@@ -26,7 +26,7 @@ dotenv.config();
 // app.use(formData.stream());
 // app.use(formData.union());
 
-// app.use(cors(corsoptions));
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
