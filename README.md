@@ -66,13 +66,12 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
   - Create a new user account.
        - **required inputs**:
          ```bash
-          "email": "",
+          {"email": "",
          "username":"",
          "password":"",
          "phone":"",
          "city":"",
-         "role":""
-        ```
+         "role":""} ```
 - **POST /login**
   - Authenticate user credentials.
       - **required inputs** { email,password}
