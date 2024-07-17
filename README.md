@@ -138,6 +138,10 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
           rate
       };
 
+- **POST /hallcodes**
+  - get the codes of hall
+     - **required inputs**  {id};
+
 
 - **POST /showrate**
   - show rate of specific hall
@@ -152,6 +156,91 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
           checked,
           id
       }; 
+
+**************************************************************** ### Messages
+
+#### main endpoint:/api/v1/messages
+
+- **GET /**
+  - Get all messages (only for admin)
+     - **required inputs**  {
+          checked,
+          id
+      }; 
+- **POST /**
+  - Add new messages 
+     - **required inputs**  {
+        name,
+        phone,
+        email,
+        message,
+        user_id
+      }; 
+- **DELETE /delete/:id**
+  - Delete messages (only for admin)
+ 
+    
+**************************************************************** ### Checkout
+
+#### main endpoint:/api/v1/checkout
+
+- **POST /createorderpaypal
+  - Create new order using paypal gateway
+     - **required inputs**  {amount}; 
+    
+- **POST /createorderstripe
+  - Create new order using stripe gateway
+     - **required inputs**  {amount};
+
+ - **POST /capturepaymentpaypal?token=?
+  - Capture the order using paypal gateway
+  - After token is valid insert book info into database
+      **required inputs**
+      * in every req there is two array one for dashboard and another for booktable*
+
+     - **where type _onehour_**
+        data.dashboardinfo {
+          userid,
+          halluserid,
+          hallid,
+          date,
+          hour,
+          type,
+          amount,
+          secretcode:generateNumericSecretCode()
+        };
+        data {
+          type,
+          userid,
+          hallid,
+          date,
+          day,
+          hour,
+          year,
+          month,
+          code: `${hallid}${year}${month}${day}${hour}`
+        };
+       * request will be in the next format :
+           {
+            amount='?'
+            data={
+               dashboardinfo:{}
+            }
+             ....
+             ....
+             ....
+             ....
+          }
+      
+    
+- **POST /capturepaymentstripe?sessionid=?
+  - Capture the order using stripe gateway
+  - After sessionid is valid insert book info into database
+     
+
+ 
+    
+    
 
 
 
