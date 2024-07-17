@@ -156,17 +156,17 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
      - **required inputs**:
        ```bash
         {
-        name,
-        capacity,
-        city,
-        price,
-        location,
-        details,
-        images,
-        imageCover,
-        pdf,
-        video,
-        user_id
+        name="",
+        capacity="",
+        city="",
+        price="",
+        location="",
+        details="",
+        images=[],
+        imageCover="",
+        pdf="",
+        video="",
+        user_id=""
       };
 
 - **POST /delete/:id**
@@ -177,9 +177,9 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
      - **required inputs**:
        ```bash
         {
-          hallid,
-          userid,
-          rate
+          hallid="",
+          userid="",
+          rate=""
         };
 
 - **POST /hallcodes**
@@ -187,7 +187,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
      - **required inputs**:
        ```bash
          {
-          id
+          id=""
          };
 
 
@@ -196,8 +196,8 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
      - **required inputs**:
        ```bash
        {
-          hallid,
-          userid
+          hallid="",
+          userid=""
        };
 
 - **PUT /**
@@ -205,8 +205,8 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
      - **required inputs**:
        ```bash
        {
-          checked,
-          id
+          checked="",
+          id=""
        }; 
 
  # Messages
@@ -220,19 +220,19 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
      - **required inputs**:
         ```bash
         {
-          checked,
-          id
+          checked="",
+          id=""
         }; 
 - **POST /**
   - Add new messages 
      - **required inputs**:
        ```bash
        {
-        name,
-        phone,
-        email,
-        message,
-        user_id
+        name="",
+        phone="",
+        email="",
+        message="",
+        user_id=""
       }; 
 - **DELETE /delete/:id**
   - Delete messages (only for admin)
@@ -314,7 +314,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
         ```
 #### **4. Capture Payment with Stripe**
  - **POST** /capturepaymentstripe?sessionid=?
-   -**Description** Capture the order using stripe gateway
+   - **Description** Capture the order using stripe gateway
      - After sessionid is valid insert book info into database **same as paypal**
      
 
