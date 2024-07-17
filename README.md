@@ -299,8 +299,37 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
           "code": "${hallid}${year}${month}${day}${hour}"
         }
         ```
+    - **For type `onehour`**:
+      - **Dashboard Info**:
+        ```json
+        {
+          "userid": "",
+          "halluserid": "",
+          "hallid": "",
+          "date": "",
+          "hour": "",
+          "type": "",
+          "amount": "",
+          "secretcode": "generateNumericSecretCode()"
+        }
+        ```
 
-      - **Complete Request Format**:
+      - **Book Table Data**:
+        ```json
+        {
+          "type": "",
+          "userid": "",
+          "hallid": "",
+          "date": "",
+          "day": "",
+          "hour": "",
+          "year": "",
+          "month": "",
+          "code": "${hallid}${year}${month}${day}${hour}"
+        }
+        ```
+
+    - **Complete Request Format**:
         ```json
         {
           "amount": "",
