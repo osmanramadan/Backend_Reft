@@ -103,7 +103,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
         ```bash
          {
           email="",
-         resetCode=""
+          resetCode=""
         }
         
 - **POST /resetPassword**
@@ -153,7 +153,9 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
  
 - **POST /addhall**
   - Add new hall by owner
-     - **required inputs**  {
+     - **required inputs**:
+       ```bash
+        {
         name,
         capacity,
         city,
@@ -172,30 +174,40 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 
 - **POST /addrate**
   - Add rate to specific hall
-     - **required inputs**  {
+     - **required inputs**:
+       ```bash
+        {
           hallid,
           userid,
           rate
-      };
+        };
 
 - **POST /hallcodes**
   - get the codes of hall
-     - **required inputs**  {id};
+     - **required inputs**:
+       ```bash
+         {
+          id
+         };
 
 
 - **POST /showrate**
   - show rate of specific hall
-     - **required inputs**  {
+     - **required inputs**:
+       ```bash
+       {
           hallid,
           userid
-      };
+       };
 
 - **PUT /**
   - Update status of specific hall (only for admin)
-     - **required inputs**  {
+     - **required inputs**:
+       ```bash
+       {
           checked,
           id
-      }; 
+       }; 
 
  # Messages
 
@@ -205,13 +217,17 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 
 - **GET /**
   - Get all messages (only for admin)
-     - **required inputs**  {
+     - **required inputs**:
+        ```bash
+        {
           checked,
           id
-      }; 
+        }; 
 - **POST /**
   - Add new messages 
-     - **required inputs**  {
+     - **required inputs**:
+       ```bash
+       {
         name,
         phone,
         email,
@@ -232,15 +248,21 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 - **POST** `/createorderpaypal`
   - **Description**: Create a new order using the PayPal gateway.
   - **Required Inputs**: 
-    - `amount`
+    - ```bash
+      {
+       amount:''
+      }
 
 #### **2. Create Order with Stripe**
 
 - **POST** `/createorderstripe`
   - **Description**: Create a new order using the Stripe gateway.
   - **Required Inputs**: 
-    - `amount`
-
+    - ```bash
+      {
+       amount:''
+      }
+      
 #### **3. Capture Payment with PayPal**
 
 - **POST** `/capturepaymentpaypal?token=?`
@@ -290,10 +312,10 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
           }
         }
         ```
-
- - **POST /capturepaymentstripe?sessionid=?
-   - Capture the order using stripe gateway
-     - After sessionid is valid insert book info into database
+#### **4. Capture Payment with Stripe**
+ - **POST** /capturepaymentstripe?sessionid=?
+   -**Description** Capture the order using stripe gateway
+     - After sessionid is valid insert book info into database **same as paypal**
      
 
  
