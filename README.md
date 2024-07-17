@@ -76,26 +76,51 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
          }
 - **POST /login**
   - Authenticate user credentials.
-      - **required inputs** { email,password}
+      - **required inputs**:
+        ```bash
+         {
+          email="",
+          password=""
+        }
 - **POST /forgotPassword**
   - forgot password endpoint to renew password.
-      - **required inputs** { email}
+      - **required inputs**:
+        ```bash
+        {
+          email=""
+        }
 - **POST /forgotPassword**
   - forgot password endpoint to renew password.
-      - **required inputs** { email}
+      - **required inputs**:
+        ```bash
+         {
+          email=""
+         }
         
 - **POST /verifyResetCode**
   - verify reset code to renew password.
-      - **required inputs** {email,resetCode}
+      - **required inputs**:
+        ```bash
+         {
+          email="",
+         resetCode=""
+        }
         
 - **POST /resetPassword**
   - reset password and setting new password
-      - **required inputs** {email,newpassword}
+      - **required inputs**:
+        ```bash
+         {
+           email="",
+           newpassword=""
+        }
 
         
 - **GET /verifyuser**
   - Get user info by token and check if JWT period is expired or not (used in frontend to identify the period should user spend in system to login again)
-      - **required inputs**  userid _Coming from token after parsing_
+      - **required inputs** :
+        ```bash
+         userid _Coming from token after parsing_
     
 ***THE REST ENDPOINTS ARE UNUSED***
 
