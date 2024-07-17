@@ -307,5 +307,5 @@ Contributions are welcome! Follow these steps:
 
 ## Contact
 
-For questions or feedback, contact Sohila Ehab at [sohailaehab25@gmail.com](mailto:sohailaehab25@gmail.com) or visit [GitHub](https://github.com/sohilaehab25).
+For questions or feedback,, contact Sohila Ehab at [sohailaehab25@gmail.com](mailto:sohailaehab25@gmail.com) or visit [GitHub](https://github.com/sohilaehab25).
 
