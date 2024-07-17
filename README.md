@@ -65,15 +65,14 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 - **POST /signup**
   - Create a new user account.
        - **required inputs**:
-         ```json{
+         ```json {
           "email": "",
          "username":"",
          "password":"",
          "phone":"",
          "city":"",
          "role":""
-        }
-        ```
+        }```
 - **POST /login**
   - Authenticate user credentials.
       - **required inputs** { email,password}
