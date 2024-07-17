@@ -53,9 +53,12 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
     STRIPE_SECRET_KEY      =
 
 ```
-## Endpoints
 
-**************************************************************** # Authentication 
+ # Authentication 
+
+## Main Endpoint: `/api/v1/users`
+
+### **Endpoints**
 
 #### main endpoint:/api/v1/users
 
@@ -88,9 +91,12 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 ***THE REST ENDPOINTS ARE UNUSED***
 
 
-**************************************************************** ### Halls
+ # Halls
 
-#### main endpoint:/api/v1/halls
+## Main Endpoint: `/api/v1/halls`
+
+### **Endpoints**
+
 
 
 - **GET /**
@@ -157,9 +163,11 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
           id
       }; 
 
-**************************************************************** ### Messages
+ # Messages
 
-#### main endpoint:/api/v1/messages
+## Main Endpoint: `/api/v1/messages`
+
+### **Endpoints**
 
 - **GET /**
   - Get all messages (only for admin)
