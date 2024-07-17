@@ -193,13 +193,13 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
      - **required inputs**  {amount};
 
  - **POST /capturepaymentpaypal?token=?
-  - Capture the order using paypal gateway
-  - After token is valid insert book info into database
+   - Capture the order using paypal gateway
+   - After token is valid insert book info into database
       **required inputs**
       * in every req there is two array one for dashboard and another for booktable*
 
      - **where type _onehour_**
-        data.dashboardinfo {
+        - data.dashboardinfo {
           userid,
           halluserid,
           hallid,
@@ -209,7 +209,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
           amount,
           secretcode:generateNumericSecretCode()
         };
-        data {
+        - data {
           type,
           userid,
           hallid,
@@ -220,8 +220,8 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
           month,
           code: `${hallid}${year}${month}${day}${hour}`
         };
-       * request will be in the next format :
-           {
+       - request will be in the next format :
+         - {
             amount='?'
             data={
                dashboardinfo:{}
@@ -233,9 +233,9 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
           }
       
     
-- **POST /capturepaymentstripe?sessionid=?
-  - Capture the order using stripe gateway
-  - After sessionid is valid insert book info into database
+ - **POST /capturepaymentstripe?sessionid=?
+   - Capture the order using stripe gateway
+     - After sessionid is valid insert book info into database
      
 
  
