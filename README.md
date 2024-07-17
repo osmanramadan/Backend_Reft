@@ -73,7 +73,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
          "phone":"",
          "city":"",
          "role":""
-         }```
+         }
 - **POST /login**
   - Authenticate user credentials.
       - **required inputs** { email,password}
