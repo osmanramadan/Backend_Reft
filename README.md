@@ -195,7 +195,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
  - **POST /capturepaymentpaypal?token=?
    - Capture the order using paypal gateway
    - After token is valid insert book info into database
-      **required inputs**
+      - **required inputs**
       * in every req there is two array one for dashboard and another for booktable*
 
      - **where type _onehour_**
@@ -222,10 +222,10 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
         };
        - request will be in the next format :
          - {
-            amount='?'
+            amount='',
             data={
                dashboardinfo:{}
-            }
+            },
              ....
              ....
              ....
