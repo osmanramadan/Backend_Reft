@@ -179,60 +179,76 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 - **DELETE /delete/:id**
   - Delete messages (only for admin)
  
-    
-**************************************************************** ### Checkout
+ # Checkout
 
-#### main endpoint:/api/v1/checkout
+## Main Endpoint: `/api/v1/checkout`
 
-- **POST /createorderpaypal
-  - Create new order using paypal gateway
-     - **required inputs**  {amount}; 
-    
-- **POST /createorderstripe
-  - Create new order using stripe gateway
-     - **required inputs**  {amount};
+### **Endpoints**
 
- - **POST /capturepaymentpaypal?token=?
-   - Capture the order using paypal gateway
-   - After token is valid insert book info into database
-      - **required inputs**
-      * in every req there is two array one for dashboard and another for booktable*
+#### **1. Create Order with PayPal**
 
-     - **where type _onehour_**
-        - data.dashboardinfo {
-          userid,
-          halluserid,
-          hallid,
-          date,
-          hour,
-          type,
-          amount,
-          secretcode:generateNumericSecretCode()
-        };
-        - data {
-          type,
-          userid,
-          hallid,
-          date,
-          day,
-          hour,
-          year,
-          month,
-          code: `${hallid}${year}${month}${day}${hour}`
-        };
-       - request will be in the next format :
-         - {
-            amount='',
-            data={
-               dashboardinfo:{}
+- **POST** `/createorderpaypal`
+  - **Description**: Create a new order using the PayPal gateway.
+  - **Required Inputs**: 
+    - `amount`
+
+#### **2. Create Order with Stripe**
+
+- **POST** `/createorderstripe`
+  - **Description**: Create a new order using the Stripe gateway.
+  - **Required Inputs**: 
+    - `amount`
+
+#### **3. Capture Payment with PayPal**
+
+- **POST** `/capturepaymentpaypal?token=?`
+  - **Description**: Capture the order using the PayPal gateway. After the token is validated, insert book info into the database.
+  - **Request Format**:
+    - The request contains two arrays: one for `dashboard` and another for `booktable`.
+
+    - **For type `onehour`**:
+      - **Dashboard Info**:
+        ```json
+        {
+          "userid": "",
+          "halluserid": "",
+          "hallid": "",
+          "date": "",
+          "hour": "",
+          "type": "",
+          "amount": "",
+          "secretcode": "generateNumericSecretCode()"
+        }
+        ```
+
+      - **Book Table Data**:
+        ```json
+        {
+          "type": "",
+          "userid": "",
+          "hallid": "",
+          "date": "",
+          "day": "",
+          "hour": "",
+          "year": "",
+          "month": "",
+          "code": "${hallid}${year}${month}${day}${hour}"
+        }
+        ```
+
+      - **Complete Request Format**:
+        ```json
+        {
+          "amount": "",
+          "data": {
+            "dashboardinfo": {
+              // Dashboard info here
             },
-             ....
-             ....
-             ....
-             ....
+            // Other data here
           }
-      
-    
+        }
+        ```
+
  - **POST /capturepaymentstripe?sessionid=?
    - Capture the order using stripe gateway
      - After sessionid is valid insert book info into database
