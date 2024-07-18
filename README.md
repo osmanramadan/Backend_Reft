@@ -25,6 +25,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 
 2. **Configure environment variables**:
    - Setting up `.env`
+
    
    ```bash
     POSTGRES_HOST          =''
@@ -68,7 +69,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
      - Grant for test database
        - `\c test_reft`
        - `GRANT ALL PRIVILEGES ON DATABASE test_reft TO reftreft;`
-   - Import reft.sql in postgres
+   - Import **reft.sql** in postgres
  
 4. **Install dependencies**:
    - Install backend dependencies:
