@@ -229,4 +229,19 @@ export class Hall {
       throw new Error(`${err}`);
     }
   }
+
+  async gethallcodes(hallid: any): Promise<any[]> {
+    try {
+      // @ts-ignore
+      const conn = await pool.connect();
+      const sql = 'SELECT code FROM hall_book where hall_id=($1)';
+
+      const result = await conn.query(sql, [hallid]);
+
+      conn.release();
+      return result.rows;
+    } catch (err) {
+      throw new Error(`Error: ${err}`);
+    }
+  }
 }

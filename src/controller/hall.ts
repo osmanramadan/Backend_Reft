@@ -339,7 +339,9 @@ export default class HallController {
   };
 
   addHallRate = async (req: Request, res: Response) => {
+    
     try {
+      
       const check = await hallobject.CheckForUserExistRate({
         hallid: req.body.hallid,
         userid: req.body.userid
@@ -398,7 +400,23 @@ export default class HallController {
       return;
     }
   };
-
+  gethallcodes = async (req: Request, res: Response) => {
+    try {
+      
+      const codes = await hallobject.gethallcodes(req.body.id);
+      res.status(200).json({
+        status: 'success',
+        codes: codes.map((e: any) => {
+          return e.code;
+        })
+      });
+      return;
+    } catch (err) {
+      res.status(400);
+      res.json({ status: 'fail' });
+      return;
+    }
+  };
   delete = async (req: Request, res: Response) => {
     try {
       const deleted = await hallobject.delete(req.params.id);

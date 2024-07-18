@@ -3,19 +3,20 @@ import Usercontroller from '../../controller/user';
 import verify from '../../authorization/middelware/jwtmiddelware';
 
 import {
-  // signupValidator,
-  // loginValidator,
+  loginValidator,
+  signupValidator,
   forgetPasswordValidator,
   verifyPasswordValidator,
   resetPasswordValidator
+
 } from '../../utils/validator/authValidator';
 
 const usercontroller = new Usercontroller();
 const users: express.Router = express.Router();
 
-users.get('/', usercontroller.index);
-users.post('/signup', usercontroller.create);
-users.post('/login', usercontroller.getuserbycredentials);
+users.get('/',verify,usercontroller.index);
+users.post('/signup',signupValidator,usercontroller.create);
+users.post('/login',loginValidator,usercontroller.getuserbycredentials);
 users.post(
   '/forgotPassword',
   forgetPasswordValidator,
@@ -31,6 +32,7 @@ users.post(
   resetPasswordValidator,
   usercontroller.resetpassword
 );
+// unused yet
 users.put('/updateuserprofile', verify, usercontroller.updateuserprofile);
 users.put('/updateuserpassword', usercontroller.updateuserpassword);
 

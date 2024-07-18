@@ -3,11 +3,12 @@ import { createOrder, capturePayment } from '../payment/paypal';
 import { createOrderByStripe, capturePaymentStipe } from '../payment/stripe';
 import { Checkout } from '../model/checkout';
 import { bookinfo, dashboardbookinfo } from '../types/bookinfo';
-import message from '../routes/api/message';
+
 
 const checkout = new Checkout();
 
 export default class PaymentController {
+
   createOrderPaypal = async (req: Request, res: Response) => {
     try {
       const [token, url] = await createOrder(req.body.amount);
@@ -197,7 +198,7 @@ export default class PaymentController {
 
   captureorderpaypal = async (req: Request, res: Response) => {
     try {
-      await capturePayment(req.query.token);
+      await capturePayment(req.query.sessionid);
 
       function generateNumericSecretCode(length: number = 10): string {
         const charset = '0123456789*#$@%!';
@@ -357,20 +358,5 @@ export default class PaymentController {
     }
   };
 
-  gethallcodes = async (req: Request, res: Response) => {
-    try {
-      const codes = await checkout.gethallcodes(req.body.id);
-      res.status(200).json({
-        status: 'success',
-        codes: codes.map((e: any) => {
-          return e.code;
-        })
-      });
-      return;
-    } catch (err) {
-      res.status(400);
-      res.json({ status: 'fail' });
-      return;
-    }
-  };
+ 
 }

@@ -7,7 +7,9 @@ import { PDFDocument } from 'pdf-lib';
 import fs from 'fs';
 
 export default class uploadImageController {
+
   uploadMultiImage() {
+
     const multerStorage = memoryStorage();
 
     const multerFilter = (_req: any, file: any, cb: any) => {
@@ -47,11 +49,10 @@ export default class uploadImageController {
 
       // @ts-ignore
       if (req.files && req.files.video && req.files.video[0]) {
-        req.body.video = ' videoFilename';
+        req.body.video = 'videoFilename';
         // @ts-ignore
         const extVideo = req.files.video[0].mimetype.split('/')[1];
         const videoFilename = `video-${uuidv4()}-${Date.now()}.${extVideo}`;
-        console.log(videoFilename);
         // @ts-ignore
         await fs.promises.writeFile(
           path.resolve(pathVideo, videoFilename),
@@ -118,7 +119,6 @@ export default class uploadImageController {
       next();
     } catch (err) {
       res.status(400);
-      console.log(err);
       res.json({ status: 'fail' });
       return;
     }

@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import routes from './routes';
 import dotenv from 'dotenv';
+import path from 'path';
 
 const app: express.Application = express();
 const port = process.env.PORT;
