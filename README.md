@@ -416,9 +416,25 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
         ```
 #### **4. Capture Payment with Stripe**
  - **POST** /capturepaymentstripe?sessionid=?
-   - **Description** Capture the order using stripe gateway
-     - After sessionid is valid insert book info into database **same as paypal**
+   - **Description** capture the order using stripe gateway
+     - After the process of _sessionid validation_ success insert book info into database **same as paypal**
+
      
+ # Booking Info 
+
+## Main Endpoint: `/api/v1/booking`
+
+### **Endpoints**
+
+- **GET** `/`
+  - **Description**: Get booking info of two side(owner,teacher) *only for admin*.
+    
+- **GET** `/teacherbooking/:id`
+  - **Description**: Get booking info of teacher
+
+- **GET** `/ownerbooking/:id`
+  - **Description**: Get booking info of owner 
+
 
  
     
