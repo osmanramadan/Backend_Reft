@@ -56,18 +56,18 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
     STRIPE_SECRET_KEY      =''
    
 3. **Set up database**:
-- Create database and name it (reft)
-- Create new user `CREATE USER reftreft WITH PASSWORD 'reftreft';`
-- In psql run the following to create the dev and test database
-  - `CREATE DATABASE reft;`
-  - `CREATE DATABASE test_reft;`
-- Connect to the databases and grant all privileges
-  - Grant for dev database
-    - `\c reft`
-    - `GRANT ALL PRIVILEGES ON DATABASE reft TO reftreft;`
-  - Grant for test database
-    - `\c test_reft`
-    - `GRANT ALL PRIVILEGES ON DATABASE test_reft TO reftreft;`
+  - Create database and name it (reft)
+  - Create new user `CREATE USER reftreft WITH PASSWORD 'reftreft';`
+  - In psql run the following to create the dev and test database
+    - `CREATE DATABASE reft;`
+    - `CREATE DATABASE test_reft;`
+ - Connect to the databases and grant all privileges
+   - Grant for dev database
+     - `\c reft`
+     - `GRANT ALL PRIVILEGES ON DATABASE reft TO reftreft;`
+   - Grant for test database
+     - `\c test_reft`
+     - `GRANT ALL PRIVILEGES ON DATABASE test_reft TO reftreft;`
  
 4. **Install dependencies**:
    - Install backend dependencies:
@@ -80,8 +80,8 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
         npm run start
 
 
-<div align="center"> 
-     # **ENDPOINTS**
+
+ #                                                                             **ENDPOINTS**
 
  # Authentication 
 
