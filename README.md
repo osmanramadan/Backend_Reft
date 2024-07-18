@@ -19,11 +19,13 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 
 ## Installation Instructions
 
-```bash
- npm run install
-```
-- Setting .env
-```bash
+1. **Clone the repository**:
+     ```bash
+     git clone https://github.com/osmanramadan/Backend__Reft__Website.git
+
+2. **Configure environment variables**:
+   - Setting up `.env`
+   ```bash
     POSTGRES_HOST          =
     PROD_POSTGRES_HOST     =
     DEV_FRONT_LINK         =
@@ -51,9 +53,24 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
     PAYPAL_HOME            =
     #stripe
     STRIPE_SECRET_KEY      =
+   
+3. **Setting up postgres database**:
+  - We use ralational database
+    
+  
+10. **Install dependencies**:
+   - Install backend dependencies:
+   
+     ```bash
+        npm install
+    
+   - Run the development server:
+     ```bash          
+        npm run start
 
-```
+     
 
+ # **ENDPOINTS** 
  # Authentication 
 
 ## Main Endpoint: `/api/v1/users`
@@ -444,26 +461,6 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 
 
 ---
-
-# Installation
-
-1. **Clone the repository**:
-  
-     ```bash
-     git clone https://github.com/osmanramadan/Backend__Reft__Website.git
-
-2. **Configure environment variables**:
-   - Setting up `.env` 
-
-3. **Install dependencies**:
-   - Install backend dependencies:
-   
-     ```bash
-        npm install
-    
-   - Run the development server:
-     ```bash          
-        npm run start
 
 
 ## Contact
