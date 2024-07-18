@@ -299,37 +299,95 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
           "code": "${hallid}${year}${month}${day}${hour}"
         }
         ```
-    - **For type `onehour`**:
+    - **For type `hourdays`**:
       - **Dashboard Info**:
         ```json
         {
-          "userid": "",
-          "halluserid": "",
-          "hallid": "",
-          "date": "",
-          "hour": "",
-          "type": "",
-          "amount": "",
-          "secretcode": "generateNumericSecretCode()"
+            userid="",
+            halluserid="",
+            hallid="",
+            datefrom="",
+            dateto="",
+            hour="",
+            type="",
+            amount="",
+            secretcode: generateNumericSecretCode()
         }
         ```
 
-      - **Book Table Data**:
+      - **Book Table Data - loop for bookinfo and get the next data-**:
         ```json
         {
-          "type": "",
-          "userid": "",
-          "hallid": "",
-          "date": "",
-          "day": "",
-          "hour": "",
-          "year": "",
-          "month": "",
-          "code": "${hallid}${year}${month}${day}${hour}"
+             userid,
+             hallid,
+             date,
+             day,
+             hour,
+             year,
+             month,
+            code
+        }
+        ```
+    - **For type `dayshours`**:
+      - **Dashboard Info**:
+        ```json
+        {
+            userid,
+            halluserid,
+            hallid,
+            datefrom,
+            dateto,
+            hourfrom,
+            hourto,
+            type,
+            amount,
+            secretcode: generateNumericSecretCode()
         }
         ```
 
-    - **Complete Request Format**:
+      - **Book Table Data - loop for bookinfo and get the next data-**:
+        ```json
+        {
+             userid,
+             hallid,
+             date,
+             day,
+             hour,
+             year,
+             month,
+            code
+        }
+        
+   - **For type `dayhours`**:
+      - **Dashboard Info**:
+        ```json
+        {
+            userid,
+            halluserid,
+            hallid,
+            date,
+            hourfrom,
+            hourto,
+            type,
+            amount,
+            secretcode: generateNumericSecretCode()
+        }
+        ```
+
+      - **Book Table Data - loop for bookinfo and get the next data-**:
+        ```json
+        {
+             userid,
+             hallid,
+             date,
+             day,
+             hour,
+             year,
+             month,
+            code
+        }
+
+    - **Complete Request Format for onehour**:
         ```json
         {
           "amount": "",
@@ -338,6 +396,21 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
               // Dashboard info here
             },
             // Other data here
+          }
+        }
+        ```
+        
+     - **Complete Request Format for other types**:
+        ```json
+        {
+          "amount": "",
+          "data": {
+            "type":"",
+            "dashboardinfo": {
+              // Dashboard info here
+            },
+            "bookinfo":{
+            // Book info here
           }
         }
         ```
