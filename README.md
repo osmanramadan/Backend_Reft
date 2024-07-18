@@ -25,40 +25,51 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 
 2. **Configure environment variables**:
    - Setting up `.env`
-   ```bash
-    POSTGRES_HOST          =
-    PROD_POSTGRES_HOST     =
-    DEV_FRONT_LINK         =
-    PROD_FRONT_LINK        =
-    #Switch Between dev or prod
-    NODE_ENV               =
-    PORT                   =
-    DEV_POSTGRES_DB        =
-    PROD_POSTGRES_DB       =
-    POSTGRES_USER          =
-    POSTGRES_PASSWORD      =
-    PROD_POSTGRES_PASSWORD =
-    POSTGRES_PORT          =
-    TOKEN_SECRET           =
-    JWT_EXPIRES_IN         =
-    BCRYPT_PASSWORD        =
-    SALT_ROUNDS            =
-    # EMAIL SETTINGS
-    EMAIL_HOST             =
-    EMAIL_PASSWORD         =
-    EMAIL_PORT             =
-    #paypal
-    PAYPAL_CLIENT_ID       =
-    PAYPAL_SECRET          =
-    PAYPAL_HOME            =
-    #stripe
-    STRIPE_SECRET_KEY      =
    
-3. **Setting up postgres database**:
-  - We use ralational database
-    
-  
-10. **Install dependencies**:
+   ```bash
+    POSTGRES_HOST          =''
+    PROD_POSTGRES_HOST     =''
+    DEV_FRONT_LINK         =''
+    PROD_FRONT_LINK        =''
+    #Switch Between dev or prod
+    NODE_ENV               =''
+    PORT                   =''
+    DEV_POSTGRES_DB        =''
+    PROD_POSTGRES_DB       =''
+    POSTGRES_USER          =''
+    POSTGRES_PASSWORD      =''
+    PROD_POSTGRES_PASSWORD =''
+    POSTGRES_PORT          =''
+    TOKEN_SECRET           =''
+    JWT_EXPIRES_IN         =''
+    BCRYPT_PASSWORD        =''
+    SALT_ROUNDS            =''
+    # EMAIL SETTINGS
+    EMAIL_HOST             =''
+    EMAIL_PASSWORD         =''
+    EMAIL_PORT             =''
+    #paypal
+    PAYPAL_CLIENT_ID       =''
+    PAYPAL_SECRET          =''
+    PAYPAL_HOME            =''
+    #stripe
+    STRIPE_SECRET_KEY      =''
+   
+3. **set up database**:
+- create database and name it (reft)
+- create new user `CREATE USER reftreft WITH PASSWORD 'reftreft';`
+- In psql run the following to create the dev and test database
+  - `CREATE DATABASE reft;`
+  - `CREATE DATABASE test_reft;`
+- Connect to the databases and grant all privileges
+  - Grant for dev database
+    - `\c reft`
+    - `GRANT ALL PRIVILEGES ON DATABASE reft TO reftreft;`
+  - Grant for test database
+    - `\c test_reft`
+    - `GRANT ALL PRIVILEGES ON DATABASE test_reft TO reftreft;`
+ 
+4. **Install dependencies**:
    - Install backend dependencies:
    
      ```bash
