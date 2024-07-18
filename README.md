@@ -80,7 +80,8 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
         npm run start
 
 
-<div align="center"> # **ENDPOINTS** </div>
+<div align="center"> 
+     # **ENDPOINTS**
 
  # Authentication 
 
