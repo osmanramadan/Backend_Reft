@@ -62,7 +62,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 
 #### main endpoint:/api/v1/users
 
-- **POST /signup**
+- **POST `/signup`**
   - Create a new user account.
        - **required inputs**:
          ```bash
@@ -74,7 +74,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
          "city":"",
          "role":""
          }
-- **POST /login**
+- **POST `/login`**
   - Authenticate user credentials.
       - **required inputs**:
         ```bash
@@ -82,22 +82,15 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
           email="",
           password=""
         }
-- **POST /forgotPassword**
+- **POST `/forgotPassword`**
   - forgot password endpoint to renew password.
       - **required inputs**:
         ```bash
         {
           email=""
         }
-- **POST /forgotPassword**
-  - forgot password endpoint to renew password.
-      - **required inputs**:
-        ```bash
-         {
-          email=""
-         }
         
-- **POST /verifyResetCode**
+- **POST `/verifyResetCode`**
   - verify reset code to renew password.
       - **required inputs**:
         ```bash
@@ -106,7 +99,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
           resetCode=""
         }
         
-- **POST /resetPassword**
+- **POST `/resetPassword`**
   - reset password and setting new password
       - **required inputs**:
         ```bash
@@ -116,7 +109,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
         }
 
         
-- **GET /verifyuser**
+- **GET `/verifyuser`**
   - Get user info by token and check if JWT period is expired or not (used in frontend to identify the period should user spend in system to login again)
       - **required inputs** :
         ```bash
@@ -133,25 +126,25 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 
 
 
-- **GET /**
+- **GET `/`**
   - Get all halls.
     
-- **GET /cities**
+- **GET `/cities`**
   - Retrieve all cities.
     
-- **GET /getadminhalls**
+- **GET `/getadminhalls`**
   - Retrieve all halls which are unchecked to make admin cofirm it.
     
-- **GET /:id**
+- **GET `/:id`**
   - Retrieve all halls of specific user.
     
-- **GET /video/:filename**
+- **GET `/video/:filename`**
   - Retrieve video by its name.
     
-- **GET /pdf/:filename**
+- **GET `/pdf/:filename`**
   - Retrieve pdf by its name.
  
-- **POST /addhall**
+- **POST `/addhall`**
   - Add new hall by owner
      - **required inputs**:
        ```bash
@@ -169,10 +162,10 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
         user_id=""
       };
 
-- **POST /delete/:id**
+- **POST `/delete/:id`**
   - Delete hall by its paramter id.
 
-- **POST /addrate**
+- **POST `/addrate`**
   - Add rate to specific hall
      - **required inputs**:
        ```bash
@@ -182,7 +175,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
           rate=""
         };
 
-- **POST /hallcodes**
+- **POST `/hallcodes`**
   - get the codes of hall
      - **required inputs**:
        ```bash
@@ -191,7 +184,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
          };
 
 
-- **POST /showrate**
+- **POST `/showrate`**
   - show rate of specific hall
      - **required inputs**:
        ```bash
@@ -200,7 +193,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
           userid=""
        };
 
-- **PUT /**
+- **PUT `/`**
   - Update status of specific hall (only for admin)
      - **required inputs**:
        ```bash
@@ -215,7 +208,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 
 ### **Endpoints**
 
-- **GET /**
+- **GET `/`**
   - Get all messages (only for admin)
      - **required inputs**:
         ```bash
@@ -223,7 +216,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
           checked="",
           id=""
         }; 
-- **POST /**
+- **POST `/`**
   - Add new messages 
      - **required inputs**:
        ```bash
@@ -234,7 +227,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
         message="",
         user_id=""
       }; 
-- **DELETE /delete/:id**
+- **DELETE `/delete/:id`**
   - Delete messages (only for admin)
  
  # Checkout
@@ -415,7 +408,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
         }
         ```
 #### **4. Capture Payment with Stripe**
- - **POST** /capturepaymentstripe?sessionid=?
+ - **POST** `/capturepaymentstripe?sessionid=?`
    - **Description** capture the order using stripe gateway
      - After the process of _sessionid validation_ success insert book info into database **same as paypal**
 
@@ -445,49 +438,36 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 
 ---
 
-## Authentication and Authorization
+# Authentication and Authorization
 
 - Authentication is required for most routes using JWT tokens (`verify` middleware).
 
 
 ---
 
-## Installation
+# Installation
 
 1. **Clone the repository**:
   
-   git clone https://github.com/sohilaehab25/hospital_system
-   cd hospital_system
- 
+   git clone
+   
 
 2. **Configure environment variables**:
-   - Copy `.env.example` to `.env` and update with your settings in the backend.
+   - Setting up `.env` 
 
 3. **Install dependencies**:
    - Install backend dependencies:
    
-     npm install
+     ```bash
+        npm install
     
    - Run the development server:
+    ```bash          
+       npm run start
     
-     nodemon app.js
-    
 
----
 
-## Contributing
-
-Contributions are welcome! Follow these steps:
-
-- Fork the repository.
-- Create a new branch: `git checkout -b feature/your-feature`.
-- Commit your changes: `git commit -am 'Add new feature'`.
-- Push to the branch: `git push origin feature/your-feature`.
-- Submit a PR (pull request).
-
----
 
 ## Contact
 
-For questions or feedback,, contact Sohila Ehab at [sohailaehab25@gmail.com](mailto:sohailaehab25@gmail.com) or visit [GitHub](https://github.com/sohilaehab25).
-
+For questions or feedback,, contact Me at [osmanramadan840@gmail.com](mailto:osmanramadan840@gmail.com) 
