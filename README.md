@@ -449,7 +449,8 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 
 1. **Clone the repository**:
   
-   git clone
+     ```bash
+     git clone https://github.com/osmanramadan/Backend__Reft__Website.git
    
 
 2. **Configure environment variables**:
@@ -462,8 +463,8 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
         npm install
     
    - Run the development server:
-    ```bash          
-       npm run start
+     ```bash          
+        npm run start
     
 
 
