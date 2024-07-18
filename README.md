@@ -21,7 +21,7 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
 
 1. **Clone the repository**:
      ```bash
-     git clone https://github.com/osmanramadan/Backend__Reft__Website.git
+     Git clone https://github.com/osmanramadan/Backend__Reft__Website.git
 
 2. **Configure environment variables**:
    - Setting up `.env`
@@ -55,9 +55,9 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
     #stripe
     STRIPE_SECRET_KEY      =''
    
-3. **set up database**:
-- create database and name it (reft)
-- create new user `CREATE USER reftreft WITH PASSWORD 'reftreft';`
+3. **Set up database**:
+- Create database and name it (reft)
+- Create new user `CREATE USER reftreft WITH PASSWORD 'reftreft';`
 - In psql run the following to create the dev and test database
   - `CREATE DATABASE reft;`
   - `CREATE DATABASE test_reft;`
@@ -79,9 +79,9 @@ REFT API provides a set of endpoints to manage booking operations, checkout , me
      ```bash          
         npm run start
 
-     
 
- # **ENDPOINTS** 
+<div align="center"> # **ENDPOINTS** </div>
+
  # Authentication 
 
 ## Main Endpoint: `/api/v1/users`
